@@ -1,12 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./SocialIcons";
 
 export default function Banner(): React.JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hasVisited = sessionStorage.getItem("has-visited-hero-intro");
+      if (hasVisited) {
+        setIsFirstLoad(false);
+      } else {
+        sessionStorage.setItem("has-visited-hero-intro", "true");
+      }
+    }
+  }, []);
 
   // Subtle neural background network logic
   useEffect(() => {
@@ -97,7 +109,12 @@ export default function Banner(): React.JSX.Element {
   const RESUME_URL = "https://drive.google.com/file/d/1SaLjcokhsq6WCEQ0AS00xRqmCiDAW9Cg/view?usp=sharing";
 
   return (
-    <section id="home" className="relative min-h-[70vh] sm:min-h-[78vh] pt-36 pb-16 px-4 sm:px-6 flex flex-col justify-center overflow-hidden">
+    <section 
+      id="home" 
+      className={`relative min-h-[70vh] sm:min-h-[78vh] pt-36 pb-16 px-4 sm:px-6 flex flex-col justify-center overflow-hidden ${
+        !isFirstLoad ? "animate-quick-fade-up" : ""
+      }`}
+    >
       {/* Canvas Background */}
       <canvas
         ref={canvasRef}
@@ -109,7 +126,9 @@ export default function Banner(): React.JSX.Element {
 
       <div className="container mx-auto max-w-4xl relative z-10 my-auto text-center flex flex-col items-center">
         {/* Availability Badge */}
-        <div className="animate-hero-fade-1 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs font-mono tracking-wide mb-6">
+        <div className={`${
+          isFirstLoad ? "animate-hero-fade-1" : ""
+        } inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs font-mono tracking-wide mb-6`}>
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -118,24 +137,32 @@ export default function Banner(): React.JSX.Element {
         </div>
 
         {/* Name Heading */}
-        <h1 className="animate-hero-fade-2 text-5xl sm:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-4">
+        <h1 className={`${
+          isFirstLoad ? "animate-hero-fade-2" : ""
+        } text-5xl sm:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-4`}>
           Param Pandya
         </h1>
 
         {/* Hero Role */}
-        <div className="animate-hero-fade-3 inline-block px-4 py-1.5 rounded-xl bg-slate-100/70 dark:bg-slate-950/70 border border-slate-200 dark:border-white/10 backdrop-blur-md mb-6">
+        <div className={`${
+          isFirstLoad ? "animate-hero-fade-3" : ""
+        } inline-block px-4 py-1.5 rounded-xl bg-slate-100/70 dark:bg-slate-950/70 border border-slate-200 dark:border-white/10 backdrop-blur-md mb-6`}>
           <p className="text-xs sm:text-sm font-mono font-semibold text-indigo-650 dark:text-indigo-300 tracking-wide">
             AI Engineer <span className="text-slate-400 dark:text-slate-500 mx-2">•</span> Machine Learning Engineer
           </p>
         </div>
 
         {/* Hero Description */}
-        <p className="animate-hero-fade-4 text-slate-705 dark:text-slate-200 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mb-8 font-medium">
+        <p className={`${
+          isFirstLoad ? "animate-hero-fade-4" : ""
+        } text-slate-705 dark:text-slate-200 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mb-8 font-medium`}>
           AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with experience building ML models and robustness pipelines at Indian Institute of Technology (IIT) Indore and Indian Institute of Technology (IIT) Jammu.
         </p>
 
         {/* Hero Buttons: View Projects & Download Resume */}
-        <div className="animate-hero-fade-5 flex flex-wrap items-center justify-center gap-4 mb-8">
+        <div className={`${
+          isFirstLoad ? "animate-hero-fade-5" : ""
+        } flex flex-wrap items-center justify-center gap-4 mb-8`}>
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/25 transition-all active:scale-95"
@@ -156,12 +183,14 @@ export default function Banner(): React.JSX.Element {
         </div>
 
         {/* Social Links: ONLY GitHub, LinkedIn, Email */}
-        <div className="animate-hero-fade-5 flex flex-wrap items-center justify-center gap-3.5 text-xs sm:text-sm font-mono">
+        <div className={`${
+          isFirstLoad ? "animate-hero-fade-5" : ""
+        } flex flex-wrap items-center justify-center gap-3.5 text-xs sm:text-sm font-mono`}>
           <a
             href="https://github.com/Param-Pandya"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 border border-slate-350 dark:border-white/20 text-slate-700 dark:text-white font-semibold transition-all shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 border border-slate-355 dark:border-white/20 text-slate-700 dark:text-white font-semibold transition-all shadow-sm"
           >
             <GithubIcon className="w-4.5 h-4.5 fill-slate-750 dark:fill-white text-slate-700 dark:text-white" />
             <span>GitHub</span>
