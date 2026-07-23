@@ -1,37 +1,47 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next"
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import ScrollProgress from "./components/ScrollProgress";
+import CustomCursor from "./components/CustomCursor";
+import StructuredData from "./components/StructuredData";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 import "./globals.css";
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-sans",
+  display: "swap",
+  });
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://parampandya.vercel.app"),
   title: {
-    default: "Param Pandya | AI/ML Researcher & Software Engineer",
+    default: "Param Pandya | Senior AI & ML Research Engineer",
     template: "%s | Param Pandya",
   },
   description:
-    "AI/ML Researcher and Software Engineer working on deep learning, NLP, healthcare AI, and trustworthy machine learning systems. Author of research papers on pneumonia detection, BioGPT-based healthcare AI, and deepfake detection.",
+    "AI/ML Researcher & Engineer specializing in Deep Learning, NLP, Generative AI, LLM Applications, Computer Vision, and Trustworthy Medical AI.",
   keywords: [
     "Param Pandya",
-    "AI ML Researcher",
-    "Machine Learning Researcher",
+    "AI Research Engineer",
+    "Machine Learning Specialist",
+    "Generative AI",
+    "LLM Applications",
+    "Computer Vision",
     "Deep Learning",
     "Healthcare AI",
-    "Medical Image Analysis",
-    "NLP",
-    "Generative AI",
     "BioGPT",
-    "Pneumonia Detection",
+    "PneuSTACK",
     "Deepfake Detection",
-    "AI Research Portfolio",
-    "PhD AI Research",
+    "IEEE Research",
+    "Theme Switcher",
   ],
   authors: [{ name: "Param Pandya" }],
   creator: "Param Pandya",
@@ -40,18 +50,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://parampandya.com", // change when you deploy
-    title: "Param Pandya | AI/ML Researcher & Software Engineer",
+    url: "https://parampandya.vercel.app",
+    title: "Param Pandya | Senior AI & ML Research Engineer",
     description:
-      "Research portfolio of Param Pandya, focusing on deep learning, NLP, healthcare AI, BioGPT-based systems, and trustworthy AI research.",
-    siteName: "Param Pandya | AI Research Portfolio",
+      "Research portfolio of Param Pandya — AI/ML Engineer specializing in Generative AI, LLMs, Computer Vision, and Healthcare AI.",
+    siteName: "Param Pandya | AI Research & Engineering",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Param Pandya | AI/ML Researcher",
+    title: "Param Pandya | AI & ML Research Engineer",
     description:
-      "AI/ML Researcher working on deep learning, NLP, healthcare AI, and generative models. Research portfolio and publications.",
+      "AI/ML Engineer specializing in Deep Learning, Generative AI, Computer Vision, and Trustworthy Medical AI.",
   },
 
   robots: {
@@ -67,7 +77,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -80,17 +89,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://ibiimemon.com" />
+        <link rel="canonical" href="https://parampandya.vercel.app" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         suppressHydrationWarning
-        className={`${poppins.variable} font-sans antialiased`}
+        className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground selection:bg-blue-500/30 selection:text-blue-200`}
       >
-
-        {children}
-        <Analytics />
+        <ThemeProvider>
+          <ScrollProgress />
+          <CustomCursor />
+          <StructuredData />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

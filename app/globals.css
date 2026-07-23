@@ -1,14 +1,142 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode selector strategy for Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #110720;
-  --foreground: #ffffff;
+  /* Premium Light Mode Semantic Design Tokens */
+  --background: #f8fafc; /* slate-50 */
+  --foreground: #0f172a; /* slate-900 */
+  
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: rgba(15, 23, 42, 0.08); /* slate-200 / border */
+  
+  --primary-text: #0f172a; /* slate-900 */
+  --secondary-text: #334155; /* slate-700 */
+  --muted-text: #64748b; /* slate-500 */
+  
+  --accent: #4f46e5; /* indigo-600 */
+  --success: #10b981; /* emerald-500 */
+  --warning: #f59e0b; /* amber-500 */
+  
+  --code-background: #f1f5f9; /* slate-100 */
+  --code-border: rgba(15, 23, 42, 0.06);
+  
+  --nav-background: rgba(255, 255, 255, 0.8);
+  --nav-border: rgba(15, 23, 42, 0.08);
+
+  --grid-color: rgba(15, 23, 42, 0.035);
+  --glow-color-top: rgba(99, 102, 241, 0.09);
+  --glow-color-bottom: rgba(6, 182, 212, 0.06);
+}
+
+.dark {
+  /* Current Dark Mode Semantic Design Tokens (Preserved Exactly) */
+  --background: #020817;
+  --foreground: #f8fafc;
+  
+  --surface: #0b1329;
+  --card: rgba(15, 23, 42, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  
+  --primary-text: #f8fafc;
+  --secondary-text: #cbd5e1; /* slate-300 */
+  --muted-text: #94a3b8; /* slate-400 */
+  
+  --accent: #6366f1; /* indigo-500 */
+  --success: #10b981;
+  --warning: #f59e0b;
+  
+  --code-background: rgba(15, 23, 42, 0.6);
+  --code-border: rgba(255, 255, 255, 0.08);
+  
+  --nav-background: rgba(2, 8, 23, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.08);
+
+  --grid-color: rgba(255, 255, 255, 0.03);
+  --glow-color-top: rgba(37, 99, 235, 0.18);
+  --glow-color-bottom: rgba(6, 182, 212, 0.15);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins), sans-serif;
+  
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  
+  --color-primary-text: var(--primary-text);
+  --color-secondary-text: var(--secondary-text);
+  --color-muted-text: var(--muted-text);
+  
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  
+  --color-code-bg: var(--code-background);
+  --color-code-border: var(--code-border);
+  
+  --color-nav-bg: var(--nav-background);
+  --color-nav-border: var(--nav-border);
+  
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* Custom Color Variants */
+  --color-slate-750: #1e293b;
+  --color-slate-705: #334155;
+  --color-slate-650: #475569;
+  --color-indigo-650: #4f46e5;
+  --color-cyan-650: #0891b2;
+  --color-emerald-650: #059669;
+  --color-rose-650: #e11d48;
+}
+
+/* Light Mode specific element overrides for overlays, borders, and cards */
+:root:not(.dark) {
+  /* Override default text colors to dark text in light mode */
+  .text-white { color: #0f172a !important; }
+  .text-slate-100 { color: #0f172a !important; }
+  .text-slate-200 { color: #1e293b !important; }
+  .text-slate-300 { color: #334155 !important; }
+  .text-slate-400 { color: #475569 !important; }
+  .text-slate-500 { color: #64748b !important; }
+
+  .border-white\/10 { border-color: rgba(15, 23, 42, 0.08) !important; }
+  .border-white\/5 { border-color: rgba(15, 23, 42, 0.04) !important; }
+  .border-white\/20 { border-color: rgba(15, 23, 42, 0.12) !important; }
+  .divide-white\/10 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(15, 23, 42, 0.08) !important; }
+  .divide-white\/5 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(15, 23, 42, 0.04) !important; }
+
+  .bg-white\/5 { background-color: rgba(15, 23, 42, 0.04) !important; }
+  .bg-white\/10 { background-color: rgba(15, 23, 42, 0.06) !important; }
+  .bg-white\/20 { background-color: rgba(15, 23, 42, 0.1) !important; }
+  .bg-white\/\[0\.02\] { background-color: rgba(15, 23, 42, 0.02) !important; }
+  .bg-white\/\[0\.03\] { background-color: rgba(15, 23, 42, 0.03) !important; }
+  .bg-white\/\[0\.04\] { background-color: rgba(15, 23, 42, 0.04) !important; }
+  .bg-white\/\[0\.05\] { background-color: rgba(15, 23, 42, 0.05) !important; }
+  .bg-slate-950\/70 { background-color: rgba(255, 255, 255, 0.7) !important; }
+  .bg-slate-950\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+  .bg-slate-950\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
+  .bg-slate-950 { background-color: #ffffff !important; }
+  .bg-slate-900 { background-color: #f1f5f9 !important; }
+  .bg-slate-900\/90 { background-color: #e2e8f0 !important; }
+  .bg-slate-900\/60 { background-color: #f1f5f9 !important; }
+  .bg-slate-955\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+}
+
+/* Ensure text colors inside dynamic colored buttons or overlays remain white/light in light mode */
+html:not(.dark) .bg-indigo-600,
+html:not(.dark) .bg-indigo-600 *,
+html:not(.dark) .bg-indigo-650,
+html:not(.dark) .bg-indigo-650 *,
+html:not(.dark) .from-indigo-600,
+html:not(.dark) .from-indigo-600 *,
+html:not(.dark) .from-indigo-650,
+html:not(.dark) .from-indigo-650 * {
+  color: #ffffff !important;
 }
 
 * {
@@ -19,22 +147,196 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Global Transition Timing for smooth color shifting */
+body, nav, header, footer, div, section, article, p, h1, h2, h3, h4, h5, h6, a, span, button, input, textarea, select, table, th, td, pre, code {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* Background Ambient Neural Grid */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, var(--glow-color-top), transparent 80%);
+}
+
+.bg-radial-glow-bottom {
+  background: radial-gradient(circle at 50% 100%, var(--glow-color-bottom), transparent 80%);
+}
+
+/* Animated Gradient Background */
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.dark .animate-gradient-bg {
+  background: linear-gradient(-45deg, #020817, #0f172a, #1e3a8a, #020817, #0369a1);
+  background-size: 400% 400%;
+  animation: gradient-bg 15s ease infinite;
+}
+
+.animate-gradient-bg {
+  background: linear-gradient(-45deg, #f8fafc, #cbd5e1, #93c5fd, #f8fafc, #7dd3fc);
+  background-size: 400% 400%;
+  animation: gradient-bg 15s ease infinite;
+}
+
+/* Staggered Entrance Animations */
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-fade-1 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-fade-2 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+.animate-hero-fade-3 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.animate-hero-fade-4 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+
+.animate-hero-fade-5 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(79, 70, 229, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.12);
+  transform: translateY(-2px);
+}
+
+.dark .glass-card-hover:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 30px -5px rgba(37, 99, 235, 0.25);
+}
+
+/* Glass Pill Badge */
+.glass-pill {
+  background: rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 70, 229, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom selection overrides for premium text readability */
+::selection {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  color: #0f172a !important;
+}
+
+.dark ::selection,
+.dark *::selection,
+.dark::selection {
+  background-color: rgba(99, 102, 241, 0.35) !important;
+  color: #ffffff !important;
 }

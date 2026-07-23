@@ -1,0 +1,325 @@
+export type TechCategory =
+  | "Programming"
+  | "AI"
+  | "Frameworks"
+  | "LLMs"
+  | "Cloud"
+  | "Deployment"
+  | "Databases"
+  | "Visualization";
+
+export interface TechNode {
+  id: string;
+  name: string;
+  category: TechCategory;
+  yearsUsed: string;
+  proficiency: number; // Percentage 0 - 100
+  proficiencyLevel: string; // e.g. "Expert", "Advanced"
+  projects: string[];
+  relatedRepo: string;
+  connectedTechIds: string[];
+  color: string;
+}
+
+export const techCategories: Array<{ id: TechCategory; label: string }> = [
+  { id: "Programming", label: "Programming" },
+  { id: "AI", label: "AI & ML" },
+  { id: "Frameworks", label: "Frameworks" },
+  { id: "LLMs", label: "LLMs & GenAI" },
+  { id: "Cloud", label: "Cloud" },
+  { id: "Deployment", label: "Deployment & MLOps" },
+  { id: "Databases", label: "Databases" },
+  { id: "Visualization", label: "Visualization & Analytics" },
+];
+
+export const techNodes: TechNode[] = [
+  // Programming
+  {
+    id: "python",
+    name: "Python",
+    category: "Programming",
+    yearsUsed: "4+ Years",
+    proficiency: 96,
+    proficiencyLevel: "Expert",
+    projects: ["IEEE Deepfake Detection (2024)", "BioGPT Prescription AI", "PneuSTACK Framework"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["pytorch", "tensorflow", "fastapi", "opencv", "scikit-learn"],
+    color: "#3776AB",
+  },
+  {
+    id: "cpp",
+    name: "C++",
+    category: "Programming",
+    yearsUsed: "3+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["High-Performance CV Kernels", "TensorRT Optimization Pipeline"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "tensorrt", "opencv"],
+    color: "#00599C",
+  },
+  {
+    id: "sql",
+    name: "SQL",
+    category: "Programming",
+    yearsUsed: "3+ Years",
+    proficiency: 90,
+    proficiencyLevel: "Expert",
+    projects: ["upskillz.in Analytics Pipeline", "Clinical SNOMED Data Indexing"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["postgresql", "pandas", "python"],
+    color: "#336791",
+  },
+  {
+    id: "typescript",
+    name: "TypeScript / JS",
+    category: "Programming",
+    yearsUsed: "2+ Years",
+    proficiency: 85,
+    proficiencyLevel: "Advanced",
+    projects: ["AI Research Portfolio Web App", "Interactive Neural Canvas"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["nextjs", "react", "node"],
+    color: "#3178C6",
+  },
+
+  // AI & ML
+  {
+    id: "pytorch",
+    name: "PyTorch",
+    category: "AI",
+    yearsUsed: "3+ Years",
+    proficiency: 95,
+    proficiencyLevel: "Expert",
+    projects: ["IEEE Deepfake Spatial-Frequency Model", "IIT Jammu CV Research", "PneuSTACK ViT"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "opencv", "huggingface", "tensorrt", "wandb"],
+    color: "#EE4C2C",
+  },
+  {
+    id: "tensorflow",
+    name: "TensorFlow",
+    category: "AI",
+    yearsUsed: "2+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["IIT Jammu Neural Benchmarking", "CNN Baseline Classifiers"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "keras", "scikit-learn"],
+    color: "#FF6F00",
+  },
+  {
+    id: "opencv",
+    name: "OpenCV",
+    category: "AI",
+    yearsUsed: "3+ Years",
+    proficiency: 92,
+    proficiencyLevel: "Expert",
+    projects: ["Facial Artifact Feature Extraction", "Perspective-Distortion Augmentation"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "pytorch", "cpp"],
+    color: "#5C3EE8",
+  },
+  {
+    id: "scikit-learn",
+    name: "Scikit-Learn",
+    category: "AI",
+    yearsUsed: "3+ Years",
+    proficiency: 94,
+    proficiencyLevel: "Expert",
+    projects: ["IIT Indore Statistical EDA", "Stacking Meta-Learner Pipelines"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "xgboost", "pandas"],
+    color: "#F7931E",
+  },
+  {
+    id: "xgboost",
+    name: "XGBoost",
+    category: "AI",
+    yearsUsed: "2+ Years",
+    proficiency: 90,
+    proficiencyLevel: "Advanced",
+    projects: ["PneuSTACK Meta-Classification", "Predictive ML Analytics"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["scikit-learn", "python", "pandas"],
+    color: "#189F57",
+  },
+
+  // LLMs & GenAI
+  {
+    id: "biogpt",
+    name: "BioGPT",
+    category: "LLMs",
+    yearsUsed: "2+ Years",
+    proficiency: 92,
+    proficiencyLevel: "Expert",
+    projects: ["Clinical Prescription Generation AI", "Medical QA Fine-Tuning"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["pytorch", "huggingface", "langchain"],
+    color: "#10B981",
+  },
+  {
+    id: "langchain",
+    name: "LangChain / LangGraph",
+    category: "LLMs",
+    yearsUsed: "2+ Years",
+    proficiency: 90,
+    proficiencyLevel: "Advanced",
+    projects: ["Autonomous State-Graph Agents", "Multimodal RAG Pipelines"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "biogpt", "pinecone", "neo4j"],
+    color: "#F59E0B",
+  },
+  {
+    id: "huggingface",
+    name: "Hugging Face",
+    category: "LLMs",
+    yearsUsed: "3+ Years",
+    proficiency: 94,
+    proficiencyLevel: "Expert",
+    projects: ["LoRA / QLoRA Model Fine-Tuning", "BioGPT Weights Hub"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["pytorch", "biogpt", "python"],
+    color: "#FFD21E",
+  },
+
+  // Frameworks
+  {
+    id: "fastapi",
+    name: "FastAPI",
+    category: "Frameworks",
+    yearsUsed: "2+ Years",
+    proficiency: 90,
+    proficiencyLevel: "Advanced",
+    projects: ["Real-Time Deepfake API Endpoint", "Clinical Prescription Microservice"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "docker", "vllm"],
+    color: "#009688",
+  },
+  {
+    id: "nextjs",
+    name: "Next.js",
+    category: "Frameworks",
+    yearsUsed: "2+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["Senior AI Research Portfolio", "Case Study Showcase"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["typescript", "react"],
+    color: "#000000",
+  },
+  {
+    id: "react",
+    name: "React",
+    category: "Frameworks",
+    yearsUsed: "2+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["Interactive Neural Canvas UI", "Research Dashboard"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["nextjs", "typescript"],
+    color: "#61DAFB",
+  },
+
+  // Cloud & Deployment
+  {
+    id: "docker",
+    name: "Docker",
+    category: "Deployment",
+    yearsUsed: "3+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["Containerized Model Serving", "CI/CD GPU Inference Nodes"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["fastapi", "tensorrt", "aws"],
+    color: "#2496ED",
+  },
+  {
+    id: "tensorrt",
+    name: "TensorRT & vLLM",
+    category: "Deployment",
+    yearsUsed: "2+ Years",
+    proficiency: 86,
+    proficiencyLevel: "Advanced",
+    projects: ["Quantized 8-Bit Inference Engine", "High-Throughput Serving"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["pytorch", "cpp", "docker"],
+    color: "#76B900",
+  },
+  {
+    id: "aws",
+    name: "AWS / Cloud",
+    category: "Cloud",
+    yearsUsed: "2+ Years",
+    proficiency: 85,
+    proficiencyLevel: "Advanced",
+    projects: ["EC2 GPU Instances", "S3 Medical Dataset Storage"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["docker", "fastapi"],
+    color: "#FF9900",
+  },
+
+  // Databases
+  {
+    id: "postgresql",
+    name: "PostgreSQL",
+    category: "Databases",
+    yearsUsed: "3+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["Enterprise Dataset Indexing", "upskillz.in ETL Pipelines"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["sql", "python"],
+    color: "#4169E1",
+  },
+  {
+    id: "pinecone",
+    name: "Pinecone / Vector DB",
+    category: "Databases",
+    yearsUsed: "2+ Years",
+    proficiency: 90,
+    proficiencyLevel: "Advanced",
+    projects: ["RAG Embedding Vector Store", "Clinical Document Index"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["langchain", "biogpt"],
+    color: "#22C55E",
+  },
+  {
+    id: "neo4j",
+    name: "Neo4j Knowledge Graph",
+    category: "Databases",
+    yearsUsed: "1+ Years",
+    proficiency: 82,
+    proficiencyLevel: "Intermediate",
+    projects: ["Multimodal Clinical Knowledge Graph", "SNOMED Taxonomy"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["langchain", "python"],
+    color: "#008CC1",
+  },
+
+  // Visualization
+  {
+    id: "matplotlib",
+    name: "Matplotlib & Seaborn",
+    category: "Visualization",
+    yearsUsed: "4+ Years",
+    proficiency: 95,
+    proficiencyLevel: "Expert",
+    projects: ["IEEE Paper ROC-AUC Plots", "IIT Indore Exploratory Charts"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["python", "pandas", "scikit-learn"],
+    color: "#11557C",
+  },
+  {
+    id: "wandb",
+    name: "Weights & Biases (W&B)",
+    category: "Visualization",
+    yearsUsed: "2+ Years",
+    proficiency: 88,
+    proficiencyLevel: "Advanced",
+    projects: ["Hyperparameter Tuning Logs", "PyTorch Model Loss Tracking"],
+    relatedRepo: "https://github.com/Param-Pandya",
+    connectedTechIds: ["pytorch", "python"],
+    color: "#FFBE00",
+  },
+];
