@@ -21,6 +21,43 @@ export default function Header(): React.JSX.Element {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Dismiss mobile drawer on scroll
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    let active = false;
+    const timer = setTimeout(() => {
+      active = true;
+    }, 150);
+
+    const handleMobileScroll = () => {
+      if (active) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleMobileScroll, { passive: true });
+    window.addEventListener("touchmove", handleMobileScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleMobileScroll);
+      window.removeEventListener("touchmove", handleMobileScroll);
+    };
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
@@ -45,7 +82,7 @@ export default function Header(): React.JSX.Element {
           {/* Custom Bitmoji Logo */}
           <BitmojiLogo size="md" />
 
-          {/* Desktop Nav Links - text-base (16px) for larger menu items, flex-nowrap to keep on one line */}
+          {/* Desktop Nav Links */}
           <ul className="hidden lg:flex items-center gap-1.5 bg-slate-100/50 dark:bg-white/[0.03] p-1.5 rounded-full border border-slate-200 dark:border-white/10 font-semibold text-base tracking-wide text-slate-700 dark:text-slate-300 flex-nowrap whitespace-nowrap">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -97,57 +134,84 @@ export default function Header(): React.JSX.Element {
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pt-4 border-t border-slate-200 dark:border-white/10 flex flex-col gap-2 font-medium text-sm text-slate-800 dark:text-slate-200 animate-in fade-in slide-in-from-top-2">
-            <div className="grid grid-cols-2 gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-xl bg-slate-100/50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:bg-slate-200 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-mono text-slate-700 dark:text-slate-300"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* Mobile Theme Toggle inside the Menu Drawer */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-100/50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 mt-2">
-              <span className="text-xs font-mono text-slate-700 dark:text-slate-300 font-semibold">Switch Theme</span>
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-xl border border-slate-300 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer flex items-center gap-2 text-xs font-mono"
-                aria-label="Toggle Theme"
-              >
-                {!mounted ? (
-                  <span className="w-4 h-4 block" />
-                ) : theme === "dark" ? (
-                  <>
-                    <Sun className="w-4 h-4 text-amber-500 animate-pulse" />
-                    <span>Light Mode</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="w-4 h-4 text-slate-600" />
-                    <span>Dark Mode</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 text-center text-xs"
-            >
-              Contact Me <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
-        )}
       </nav>
+
+      {/* Full-screen Backdrop Blur Overlay */}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        className={`fixed inset-0 bg-slate-950/40 dark:bg-black/60 backdrop-blur-md transition-opacity duration-300 z-40 lg:hidden ${
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Viewport-Anchored Mobile Navigation Drawer */}
+      <div
+        className={`fixed top-4 left-3 right-3 sm:left-6 sm:right-6 max-h-[85vh] overflow-y-auto rounded-3xl glass-card bg-nav-bg border-nav-border shadow-2xl backdrop-blur-2xl transition-all duration-300 ease-in-out z-50 lg:hidden ${
+          mobileMenuOpen
+            ? "translate-y-0 opacity-100 visible"
+            : "-translate-y-10 opacity-0 invisible pointer-events-none"
+        }`}
+      >
+        <div className="p-6 space-y-6">
+          {/* Header inside drawer */}
+          <div className="flex items-center justify-between">
+            <BitmojiLogo size="md" />
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer rounded-xl"
+              aria-label="Close Menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Links Grid */}
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200 dark:border-white/10">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-xl bg-slate-100/50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:bg-slate-200 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-mono text-slate-700 dark:text-slate-300"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile Theme Toggle inside the Menu Drawer */}
+          <div className="flex items-center justify-between p-3 rounded-xl bg-slate-100/50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 mt-2">
+            <span className="text-xs font-mono text-slate-700 dark:text-slate-300 font-semibold">Switch Theme</span>
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-xl border border-slate-300 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer flex items-center gap-2 text-xs font-mono"
+              aria-label="Toggle Theme"
+            >
+              {!mounted ? (
+                <span className="w-4 h-4 block" />
+              ) : theme === "dark" ? (
+                <>
+                  <Sun className="w-4 h-4 text-amber-500 animate-pulse" />
+                  <span>Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-slate-600" />
+                  <span>Dark Mode</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 text-center text-xs shadow-md shadow-indigo-500/25"
+          >
+            Contact Me <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }

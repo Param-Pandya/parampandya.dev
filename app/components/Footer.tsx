@@ -66,27 +66,27 @@ export default function Footer(): React.JSX.Element {
             <ul className="space-y-2 text-xs font-mono">
               <li>
                 <Link href="/" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
-                  Home Overview
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
-                  About & Philosophy
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="/projects" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
-                  Engineering Projects
+                  Projects
                 </Link>
               </li>
               <li>
                 <Link href="/case-studies" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
-                  System Case Studies
+                  Case Studies
                 </Link>
               </li>
               <li>
                 <Link href="/research" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
-                  IEEE Research
+                  Research
                 </Link>
               </li>
             </ul>
