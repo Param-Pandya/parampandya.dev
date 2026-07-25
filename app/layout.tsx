@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ScrollProgress from "./components/ScrollProgress";
 import CustomCursor from "./components/CustomCursor";
 import StructuredData from "./components/StructuredData";
@@ -122,6 +123,7 @@ export default function RootLayout({
           <StructuredData />
           {children}
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
