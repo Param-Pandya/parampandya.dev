@@ -9,6 +9,19 @@ export const metadata: Metadata = {
   title: "Engineering Case Studies | Param Pandya",
   description:
     "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+  openGraph: {
+    title: "Engineering Case Studies | Param Pandya",
+    description:
+      "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+    type: "website",
+    url: "https://parampandya.vercel.app/case-studies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Engineering Case Studies | Param Pandya",
+    description:
+      "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+  },
 };
 
 export default function CaseStudiesPage(): React.JSX.Element {

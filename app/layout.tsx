@@ -22,6 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://parampandya.vercel.app"),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Param Pandya | Senior AI & ML Research Engineer",
     template: "%s | Param Pandya",
@@ -91,7 +94,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://parampandya.vercel.app" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

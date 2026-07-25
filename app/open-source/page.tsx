@@ -7,6 +7,17 @@ import { Terminal, Layers, ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Open Source Contributions & Repositories | Param Pandya",
   description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+  openGraph: {
+    title: "Open Source Contributions & Repositories | Param Pandya",
+    description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+    type: "website",
+    url: "https://parampandya.vercel.app/open-source",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Open Source Contributions & Repositories | Param Pandya",
+    description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+  },
 };
 
 export default function OpenSourcePage(): React.JSX.Element {

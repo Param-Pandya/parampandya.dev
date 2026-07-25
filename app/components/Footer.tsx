@@ -111,7 +111,7 @@ export default function Footer(): React.JSX.Element {
               <li>
                 <Link href="/now" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors flex items-center gap-1.5 text-indigo-650 dark:text-indigo-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
-                  Now Page (/now)
+                  What I'm Doing
                 </Link>
               </li>
               <li>

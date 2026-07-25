@@ -1,12 +1,24 @@
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BlogPageClient from "./BlogPageClient";
 import { getBlogPosts } from "../../lib/markdown";
 import { BookOpen } from "lucide-react";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Technical Blog | Param Pandya",
   description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+  openGraph: {
+    title: "Technical Blog | Param Pandya",
+    description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+    type: "website",
+    url: "https://parampandya.vercel.app/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Technical Blog | Param Pandya",
+    description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+  },
 };
 
 export default async function BlogPage() {

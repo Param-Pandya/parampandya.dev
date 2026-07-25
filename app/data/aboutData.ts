@@ -32,7 +32,7 @@ export const educationData: EducationItem[] = [
     location: "Vellore, Tamil Nadu",
     period: "2024 – 2026",
     details: [
-      "CGPA: 8.01",
+      "CGPA: 8.06",
       "Focus: Machine Learning, Computer Vision, Generative AI",
     ],
   },

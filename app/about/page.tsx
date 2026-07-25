@@ -19,6 +19,19 @@ export const metadata: Metadata = {
   title: "About Param Pandya | AI Engineer",
   description:
     "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+  openGraph: {
+    title: "About Param Pandya | AI Engineer",
+    description:
+      "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+    type: "profile",
+    url: "https://parampandya.vercel.app/about",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Param Pandya | AI Engineer",
+    description:
+      "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+  },
 };
 
 export default function AboutPage(): React.JSX.Element {

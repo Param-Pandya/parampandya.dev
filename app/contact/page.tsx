@@ -3,11 +3,25 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { GithubIcon, LinkedinIcon } from "../components/SocialIcons";
 import { Mail, Download, Sparkles, Briefcase, Send } from "lucide-react";
+import ContactForm from "../components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Param Pandya | AI Engineer",
   description:
     "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+  openGraph: {
+    title: "Contact Param Pandya | AI Engineer",
+    description:
+      "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+    type: "website",
+    url: "https://parampandya.vercel.app/contact",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Param Pandya | AI Engineer",
+    description:
+      "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+  },
 };
 
 export default function ContactPage(): React.JSX.Element {
@@ -36,65 +50,7 @@ export default function ContactPage(): React.JSX.Element {
 
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 pb-24 space-y-10">
         {/* 1. Direct Message Form Box (ON TOP) */}
-        <div className="glass-card rounded-3xl p-6 sm:p-10 border border-white/15 bg-slate-950/90 shadow-2xl space-y-6">
-          <div className="space-y-1">
-            <h2 className="text-2xl font-bold text-white tracking-tight">Send a Direct Message</h2>
-            <p className="text-slate-400 text-xs font-mono">
-              Launches your default mail client prepopulated with your message details.
-            </p>
-          </div>
-
-          <form
-            action="mailto:pandyaparam7@gmail.com"
-            method="get"
-            className="space-y-4 font-mono text-xs"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-slate-300 font-bold">YOUR NAME</label>
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="e.g. AI Startup Recruiter / Technical Lead"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-slate-200 focus:outline-none focus:border-indigo-500"
-                  required
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-slate-300 font-bold">OPPORTUNITY / REASON</label>
-                <select
-                  name="subject"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-slate-200 focus:outline-none focus:border-indigo-500"
-                >
-                  <option value="Job Opportunity">Full-Time AI Engineering Role</option>
-                  <option value="Research Collaboration">IEEE / Research Collaboration</option>
-                  <option value="Freelance/Consulting">Technical AI Consulting</option>
-                  <option value="General Inquiry">General Technical Inquiry</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="text-slate-300 font-bold">YOUR MESSAGE</label>
-              <textarea
-                name="body"
-                rows={4}
-                placeholder="Share role details, project scope, or research ideas..."
-                className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-slate-200 focus:outline-none focus:border-indigo-500"
-                required
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-mono font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-500/25"
-            >
-              <span>Send Message to Param</span>
-              <Send className="w-3.5 h-3.5" />
-            </button>
-          </form>
-        </div>
+        <ContactForm />
 
         {/* 2. Contact Options Cards (BELOW DIRECT MESSAGE) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

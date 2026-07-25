@@ -168,16 +168,41 @@ function highlightSyntax(code: string, language: string): string {
     return code;
   }
   
-  let html = code;
-  html = html.replace(/(\/\/.*|#.*)/g, '<span class="text-slate-400 dark:text-slate-500 italic">$1</span>');
-  html = html.replace(/(".*?"|'.*?')/g, '<span class="text-emerald-600 dark:text-emerald-400 font-semibold">$1</span>');
+  // First escape HTML special characters to prevent HTML injection/parsing bugs
+  let html = code
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
   
+  const tokens: string[] = [];
+  
+  // Regex to match comments or string literals (handles escaped quotes inside strings)
+  const tokenRegex = /(\/\/.*|#.*)|("[^"\\]*(?:\\.[^"\\]*)*"|'[^'\\]*(?:\\.[^'\\]*)*')/g;
+  
+  html = html.replace(tokenRegex, (match, comment, str) => {
+    const placeholder = `___TOKEN_PLACEHOLDER_${tokens.length}___`;
+    if (comment) {
+      tokens.push(`<span class="text-slate-400 dark:text-slate-500 italic">${comment}</span>`);
+    } else if (str) {
+      tokens.push(`<span class="text-emerald-600 dark:text-emerald-400 font-semibold">${str}</span>`);
+    } else {
+      tokens.push(match);
+    }
+    return placeholder;
+  });
+  
+  // Now highlight keywords and builtins safely on the remaining text
   const keywords = /\b(def|class|import|from|return|if|else|elif|for|in|while|try|except|raise|const|let|var|function|async|await|default|export)\b/g;
   html = html.replace(keywords, '<span class="text-indigo-600 dark:text-indigo-400 font-bold">$1</span>');
   
   const builtins = /\b(print|str|int|float|list|dict|set|type|range|json|self|this|console|log)\b/g;
   html = html.replace(builtins, '<span class="text-cyan-600 dark:text-cyan-400 font-semibold">$1</span>');
-
+  
+  // Restore the tokens in order
+  for (let i = 0; i < tokens.length; i++) {
+    html = html.replace(`___TOKEN_PLACEHOLDER_${i}___`, tokens[i]);
+  }
+  
   return html;
 }
 

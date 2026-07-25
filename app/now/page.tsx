@@ -9,6 +9,19 @@ export const metadata: Metadata = {
   title: "What I'm Doing Now (/now) | Param Pandya",
   description:
     "What Param Pandya is currently building, learning, reading, and aiming for in production AI engineering.",
+  openGraph: {
+    title: "What I'm Doing Now (/now) | Param Pandya",
+    description:
+      "A public snapshot of what Param Pandya is currently building, learning, reading, and working toward.",
+    type: "website",
+    url: "https://parampandya.vercel.app/now",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What I'm Doing Now (/now) | Param Pandya",
+    description:
+      "A public snapshot of what Param Pandya is currently building, learning, reading, and working toward.",
+  },
 };
 
 export default function NowPage(): React.JSX.Element {
