@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import ClarityAnalytics from "./components/ClarityAnalytics";
 import ScrollProgress from "./components/ScrollProgress";
 import CustomCursor from "./components/CustomCursor";
 import StructuredData from "./components/StructuredData";
@@ -117,6 +118,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground selection:bg-blue-500/30 selection:text-blue-200`}
       >
+        <ClarityAnalytics />
         {/* Google Analytics (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-6BBHD9K0L0"
