@@ -32,6 +32,16 @@ export default function ContactForm(): React.JSX.Element {
       type: typeof apiKey
     });
 
+    if (!apiKey) {
+      console.warn("WARNING: NEXT_PUBLIC_WEB3FORMS_KEY is undefined. Form submission will fail.");
+      setStatus("error");
+      setStatusMessage(
+        "Form submission is misconfigured. NEXT_PUBLIC_WEB3FORMS_KEY is missing in production environment variables."
+      );
+      console.log("=== END CONTACT FORM SUBMISSION AUDIT ===");
+      return;
+    }
+
     try {
       console.log("Initiating fetch() request to Web3Forms...");
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -84,8 +94,34 @@ export default function ContactForm(): React.JSX.Element {
       }
     } catch (err) {
       console.error("Form submission caught exception:", err);
+      
+      // Log detailed error properties to help developers inspect the error
+      if (err instanceof Error) {
+        console.error("Error Name:", err.name);
+        console.error("Error Message:", err.message);
+        console.error("Error Stack:", err.stack);
+      } else {
+        console.error("Non-Error Exception:", String(err));
+      }
+
       setStatus("error");
-      setStatusMessage("An unexpected network error occurred. Please try again later.");
+      
+      // Provide a helpful message if it looks like an ad-blocker / privacy extension block
+      const isAdBlocker = err instanceof Error && (
+        err.message.includes("Failed to fetch") || 
+        err.name === "TypeError" ||
+        err.message.includes("NetworkError") ||
+        err.message.includes("Load failed")
+      );
+
+      if (isAdBlocker) {
+        setStatusMessage(
+          "Network request was blocked (likely by an ad-blocker or tracking protection extension). " +
+          "Please temporarily disable it or email Param directly at pandyaparam7@gmail.com."
+        );
+      } else {
+        setStatusMessage("An unexpected network error occurred. Please try again later.");
+      }
     } finally {
       console.log("=== END CONTACT FORM SUBMISSION AUDIT ===");
     }
