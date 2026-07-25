@@ -23,7 +23,17 @@ export default function ContactForm(): React.JSX.Element {
     setStatus("sending");
     setStatusMessage("");
 
+    // Audit logs for debugging in production
+    console.log("=== CONTACT FORM SUBMISSION AUDIT ===");
+    const apiKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    console.log("NEXT_PUBLIC_WEB3FORMS_KEY check:", {
+      exists: !!apiKey,
+      length: apiKey ? apiKey.length : 0,
+      type: typeof apiKey
+    });
+
     try {
+      console.log("Initiating fetch() request to Web3Forms...");
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -31,7 +41,7 @@ export default function ContactForm(): React.JSX.Element {
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: apiKey,
           name,
           email,
           subject: `Portfolio Contact: ${opportunity} - ${name}`,
@@ -39,22 +49,45 @@ export default function ContactForm(): React.JSX.Element {
         }),
       });
 
-      const data = await response.json();
+      console.log("Fetch executed. HTTP Status Code:", response.status);
+      console.log("Response OK status:", response.ok);
 
-      if (response.ok && data.success) {
+      let data: any = null;
+      try {
+        data = await response.json();
+        console.log("Decoded Web3Forms Response Body:", JSON.stringify(data));
+      } catch (jsonParseErr) {
+        console.error("Failed to parse response body as JSON:", jsonParseErr);
+        try {
+          const rawText = await response.text();
+          console.log("Raw Response Text (first 500 chars):", rawText.substring(0, 500));
+        } catch (textReadErr) {
+          console.error("Failed to read raw response text:", textReadErr);
+        }
+      }
+
+      // Explicitly check for data.success === true to render the success UI
+      if (response.ok && data && data.success === true) {
+        console.log("Success condition met: response.ok and data.success === true");
         setStatus("success");
         setName("");
         setEmail("");
         setOpportunity("Job Opportunity");
         setMessage("");
       } else {
+        console.warn("Failure condition met. Success UI will NOT be shown.");
         setStatus("error");
-        setStatusMessage(data.message || "Failed to send message. Please try again.");
+        setStatusMessage(
+          (data && data.message) || 
+          `Form submission failed with status ${response.status}. Please try again.`
+        );
       }
     } catch (err) {
-      console.error("Form submission error:", err);
+      console.error("Form submission caught exception:", err);
       setStatus("error");
       setStatusMessage("An unexpected network error occurred. Please try again later.");
+    } finally {
+      console.log("=== END CONTACT FORM SUBMISSION AUDIT ===");
     }
   };
 
