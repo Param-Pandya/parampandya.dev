@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import ClarityAnalytics from "./components/ClarityAnalytics";
 import ScrollProgress from "./components/ScrollProgress";
 import CustomCursor from "./components/CustomCursor";
@@ -119,20 +119,7 @@ export default function RootLayout({
         className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground selection:bg-blue-500/30 selection:text-blue-200`}
       >
         <ClarityAnalytics />
-        {/* Google Analytics (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6BBHD9K0L0"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-6BBHD9K0L0');
-          `}
-        </Script>
+        <GoogleAnalytics gaId="G-6BBHD9K0L0" />
         <ThemeProvider>
           <ScrollProgress />
           <CustomCursor />
