@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "./data/blogData";
 import { projectsData } from "./data/projectsData";
+import { caseStudiesData } from "./data/caseStudiesData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://parampandya.vercel.app";
+  const baseUrl = "https://parampandya.dev";
 
 
   // Static core routes
@@ -33,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/case-studies`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/playground`,
       lastModified: new Date(),
       changeFrequency: "weekly",
@@ -42,6 +49,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/analytics`,
       lastModified: new Date(),
       changeFrequency: "daily",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/open-source`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/now`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.85,
     },
     {
@@ -69,6 +88,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // Dynamic system case study routes
+  const caseStudyRoutes: MetadataRoute.Sitemap = caseStudiesData.map((cs) => ({
+    url: `${baseUrl}/case-studies/${cs.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
 
-  return [...staticRoutes, ...blogPostRoutes, ...projectRoutes];
+
+  return [...staticRoutes, ...blogPostRoutes, ...projectRoutes, ...caseStudyRoutes];
 }

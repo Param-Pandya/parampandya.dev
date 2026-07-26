@@ -42,6 +42,26 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   return {
     title: `${project.title} | Engineering Case Study`,
     description: project.shortDescription,
+    alternates: {
+      canonical: `/projects/${resolvedParams.id}`,
+    },
+    openGraph: {
+      title: `${project.title} | Engineering Case Study`,
+      description: project.shortDescription,
+      type: "website",
+      url: `https://parampandya.dev/projects/${resolvedParams.id}`,
+      images: [
+        {
+          url: project.thumbnail,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Engineering Case Study`,
+      description: project.shortDescription,
+    },
   };
 }
 
@@ -57,8 +77,27 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     .map((id) => getProjectById(id))
     .filter((p): p is typeof project => p !== undefined);
 
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": project.title,
+    "description": project.shortDescription,
+    "image": project.thumbnail,
+    "codeRepository": project.githubUrl,
+    "programmingLanguage": project.technologies.join(", "),
+    "author": {
+      "@type": "Person",
+      "name": "Param Pandya",
+      "url": "https://parampandya.dev"
+    }
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <Header />
 
       {/* Header Breadcrumb & Banner */}

@@ -19,12 +19,15 @@ export const metadata: Metadata = {
   title: "About Param Pandya | AI Engineer",
   description:
     "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About Param Pandya | AI Engineer",
     description:
       "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
     type: "profile",
-    url: "https://parampandya.vercel.app/about",
+    url: "https://parampandya.dev/about",
   },
   twitter: {
     card: "summary_large_image",
@@ -35,8 +38,20 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage(): React.JSX.Element {
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Param Pandya | AI Engineer",
+    "description": "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+    "url": "https://parampandya.dev/about"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
       <Header />
 
       {/* Hero Header Section */}

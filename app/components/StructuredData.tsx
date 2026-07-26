@@ -5,7 +5,7 @@ export default function StructuredData(): React.JSX.Element {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Param Pandya",
-    url: "https://parampandya.vercel.app",
+    url: "https://parampandya.dev",
     image: "https://github.com/Param-Pandya.png",
     jobTitle: "Senior AI & ML Research Engineer",
     worksFor: {
@@ -41,22 +41,11 @@ export default function StructuredData(): React.JSX.Element {
     ],
   };
 
-  const articleSchema = {
+  const websiteSchema = {
     "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    headline: "Efficient Deepfake Detection using AI",
-    author: {
-      "@type": "Person",
-      name: "Param Pandya",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "IEEE Xplore",
-    },
-    datePublished: "2024",
-    url: "https://ieeexplore.ieee.org/document/10872263",
-    description:
-      "IEEE published spatial-frequency dual-stream neural architecture for facial manipulation detection in lossy video streams.",
+    "@type": "WebSite",
+    name: "Param Pandya Portfolio",
+    url: "https://parampandya.dev",
   };
 
   return (
@@ -67,9 +56,9 @@ export default function StructuredData(): React.JSX.Element {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
       <Script
-        id="article-jsonld"
+        id="website-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
     </>
   );

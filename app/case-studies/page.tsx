@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   title: "Engineering Case Studies | Param Pandya",
   description:
     "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+  alternates: {
+    canonical: "/case-studies",
+  },
   openGraph: {
     title: "Engineering Case Studies | Param Pandya",
     description:
       "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
     type: "website",
-    url: "https://parampandya.vercel.app/case-studies",
+    url: "https://parampandya.dev/case-studies",
   },
   twitter: {
     card: "summary_large_image",
@@ -25,8 +28,20 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesPage(): React.JSX.Element {
+  const caseStudiesPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Engineering Case Studies | Param Pandya",
+    "description": "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+    "url": "https://parampandya.dev/case-studies"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesPageSchema) }}
+      />
       <Header />
 
       {/* Hero Section */}

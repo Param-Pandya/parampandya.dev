@@ -21,6 +21,22 @@ export const metadata: Metadata = {
   title: "Param Pandya | AI Engineer • Machine Learning Engineer",
   description:
     "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Param Pandya | AI Engineer • Machine Learning Engineer",
+    description:
+      "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
+    type: "website",
+    url: "https://parampandya.dev",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Param Pandya | AI Engineer • Machine Learning Engineer",
+    description:
+      "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
+  },
 };
 
 const RESUME_URL = "https://drive.google.com/file/d/1SaLjcokhsq6WCEQ0AS00xRqmCiDAW9Cg/view?usp=sharing";
@@ -91,8 +107,20 @@ export default function Home(): React.JSX.Element {
     },
   ];
 
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Param Pandya | AI Engineer • Machine Learning Engineer",
+    "description": "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
+    "url": "https://parampandya.dev"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+      />
       <Header />
 
       {/* 1. HERO SECTION */}

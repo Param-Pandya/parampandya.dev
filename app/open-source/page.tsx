@@ -7,11 +7,14 @@ import { Terminal, Layers, ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Open Source Contributions & Repositories | Param Pandya",
   description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+  alternates: {
+    canonical: "/open-source",
+  },
   openGraph: {
     title: "Open Source Contributions & Repositories | Param Pandya",
     description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
     type: "website",
-    url: "https://parampandya.vercel.app/open-source",
+    url: "https://parampandya.dev/open-source",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,8 +24,20 @@ export const metadata: Metadata = {
 };
 
 export default function OpenSourcePage(): React.JSX.Element {
+  const openSourcePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Open Source Contributions & Repositories | Param Pandya",
+    "description": "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+    "url": "https://parampandya.dev/open-source"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(openSourcePageSchema) }}
+      />
       <Header />
 
       {/* Hero Header Section */}

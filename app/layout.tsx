@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://parampandya.vercel.app"),
+  metadataBase: new URL("https://parampandya.dev"),
   alternates: {
-    canonical: "./",
+    canonical: "/",
   },
   title: {
     default: "Param Pandya | Senior AI & ML Research Engineer",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://parampandya.vercel.app",
+    url: "https://parampandya.dev",
     title: "Param Pandya | Senior AI & ML Research Engineer",
     description:
       "Research portfolio of Param Pandya — AI/ML Engineer specializing in Generative AI, LLMs, Computer Vision, and Healthcare AI.",

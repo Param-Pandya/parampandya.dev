@@ -81,9 +81,9 @@ export default function CaseStudyModal({
         <div className="p-6 sm:p-10 space-y-12">
           {/* Title & Actions */}
           <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
               {project.title}
-            </h1>
+            </h2>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
               {project.shortDescription}
             </p>

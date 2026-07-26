@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   title: "Contact Param Pandya | AI Engineer",
   description:
     "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
     title: "Contact Param Pandya | AI Engineer",
     description:
       "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
     type: "website",
-    url: "https://parampandya.vercel.app/contact",
+    url: "https://parampandya.dev/contact",
   },
   twitter: {
     card: "summary_large_image",
@@ -25,8 +28,20 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage(): React.JSX.Element {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Param Pandya | AI Engineer",
+    "description": "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+    "url": "https://parampandya.dev/contact"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <Header />
 
       {/* Hero Header */}

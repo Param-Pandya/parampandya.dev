@@ -26,6 +26,26 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   return {
     title: `${study.title} | Engineering Case Study`,
     description: study.subtitle,
+    alternates: {
+      canonical: `/case-studies/${resolvedParams.slug}`,
+    },
+    openGraph: {
+      title: `${study.title} | Engineering Case Study`,
+      description: study.subtitle,
+      type: "article",
+      url: `https://parampandya.dev/case-studies/${resolvedParams.slug}`,
+      images: [
+        {
+          url: study.heroImage,
+          alt: study.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.title} | Engineering Case Study`,
+      description: study.subtitle,
+    },
   };
 }
 
@@ -36,6 +56,24 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
   if (!study) {
     notFound();
   }
+
+  const studySchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": study.title,
+    "description": study.subtitle,
+    "image": study.heroImage,
+    "datePublished": study.date,
+    "author": {
+      "@type": "Person",
+      "name": "Param Pandya",
+      "url": "https://parampandya.dev"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://parampandya.dev/case-studies/${study.slug}`
+    }
+  };
 
   // Render ChatGPT Case Study in clean documentation layout
   if (study.slug === "chatgpt-long-conversations") {
@@ -122,6 +160,10 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
 
     return (
       <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(studySchema) }}
+        />
         <Script
           src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
           strategy="lazyOnload"
@@ -446,6 +488,10 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
   // Fallback for standard layout (if another case study is ever queried)
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(studySchema) }}
+      />
       <Header />
       <div className="pt-32 pb-24 px-4 sm:px-6">
         <div className="mx-auto max-w-[800px] animate-fade-in space-y-10">

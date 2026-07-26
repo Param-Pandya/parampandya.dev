@@ -8,11 +8,14 @@ import { BookOpen } from "lucide-react";
 export const metadata: Metadata = {
   title: "Technical Blog | Param Pandya",
   description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "Technical Blog | Param Pandya",
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     type: "website",
-    url: "https://parampandya.vercel.app/blog",
+    url: "https://parampandya.dev/blog",
   },
   twitter: {
     card: "summary_large_image",
@@ -25,8 +28,20 @@ export default async function BlogPage() {
   // Read posts from content/ directory
   const posts = getBlogPosts();
 
+  const blogPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Technical Blog | Param Pandya",
+    "description": "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+    "url": "https://parampandya.dev/blog"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
+      />
       <Header />
 
       {/* Hero Header Section */}

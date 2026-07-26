@@ -26,10 +26,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} | Param Pandya Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${resolvedParams.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: `https://parampandya.dev/blog/${resolvedParams.slug}`,
       publishedTime: new Date(post.publishedDate).toISOString(),
       authors: [post.author.name],
       images: [

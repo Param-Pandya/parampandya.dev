@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   title: "What I'm Doing Now (/now) | Param Pandya",
   description:
     "What Param Pandya is currently building, learning, reading, and aiming for in production AI engineering.",
+  alternates: {
+    canonical: "/now",
+  },
   openGraph: {
     title: "What I'm Doing Now (/now) | Param Pandya",
     description:
       "A public snapshot of what Param Pandya is currently building, learning, reading, and working toward.",
     type: "website",
-    url: "https://parampandya.vercel.app/now",
+    url: "https://parampandya.dev/now",
   },
   twitter: {
     card: "summary_large_image",
@@ -25,8 +28,20 @@ export const metadata: Metadata = {
 };
 
 export default function NowPage(): React.JSX.Element {
+  const nowPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "What I'm Doing Now (/now) | Param Pandya",
+    "description": "What Param Pandya is currently building, learning, reading, and aiming for in production AI engineering.",
+    "url": "https://parampandya.dev/now"
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(nowPageSchema) }}
+      />
       <Header />
 
       {/* Hero Header */}
