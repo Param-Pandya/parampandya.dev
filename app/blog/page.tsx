@@ -16,11 +16,23 @@ export const metadata: Metadata = {
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     type: "website",
     url: "https://parampandya.dev/blog",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya Technical Blog",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Technical Blog | Param Pandya",
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

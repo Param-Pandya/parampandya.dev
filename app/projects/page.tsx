@@ -14,12 +14,24 @@ export const metadata: Metadata = {
       "Detailed engineering showcases detailing real-world problems, neural architectures, benchmark results, system challenges, and key technical learnings.",
     type: "website",
     url: "https://parampandya.dev/projects",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya Projects",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI & ML Engineering Projects | Param Pandya",
     description:
       "Detailed engineering showcases detailing real-world problems, neural architectures, benchmark results, system challenges, and key technical learnings.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

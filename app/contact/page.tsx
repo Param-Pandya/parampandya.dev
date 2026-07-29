@@ -18,12 +18,24 @@ export const metadata: Metadata = {
       "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
     type: "website",
     url: "https://parampandya.dev/contact",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Contact Param Pandya",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Param Pandya | AI Engineer",
     description:
       "Get in touch with Param Pandya for AI startup roles, machine learning engineering, research collaboration, and technical projects.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

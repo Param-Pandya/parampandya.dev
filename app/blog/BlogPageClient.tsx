@@ -160,9 +160,10 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
-            <div
+            <Link
               key={post.id}
-              className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 space-y-4 flex flex-col justify-between group bg-slate-950/80"
+              href={`/blog/${post.slug}`}
+              className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 space-y-4 flex flex-col justify-between group bg-slate-950/80 cursor-pointer block text-left transition-all duration-300 hover:-translate-y-1.5"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs font-mono select-none">
@@ -197,16 +198,13 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
 
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-500 dark:text-slate-450">{post.publishedDate}</span>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform"
-                  >
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
                     <span>Read Article</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

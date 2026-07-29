@@ -5,9 +5,15 @@ export default function StructuredData(): React.JSX.Element {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Param Pandya",
+    alternateName: ["Param", "Param P.", "P. Pandya"],
     url: "https://parampandya.dev",
     image: "https://github.com/Param-Pandya.png",
     jobTitle: "Senior AI & ML Research Engineer",
+    description: "AI/ML Researcher & Engineer specializing in Deep Learning, NLP, Generative AI, LLM Applications, Computer Vision, and Trustworthy Medical AI.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "India",
+    },
     worksFor: {
       "@type": "Organization",
       name: "AI Research & Engineering",
@@ -20,6 +26,14 @@ export default function StructuredData(): React.JSX.Element {
       {
         "@type": "EducationalOrganization",
         name: "IIT Indore (Research Intern)",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "Vellore Institute of Technology (VIT)",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "Pandit Deendayal Energy University (PDEU)",
       },
     ],
     sameAs: [
@@ -38,6 +52,16 @@ export default function StructuredData(): React.JSX.Element {
       "BioGPT Medical AI",
       "PyTorch",
       "TensorFlow",
+      "Retrieval Augmented Generation (RAG)",
+      "Natural Language Processing (NLP)",
+      "MLOps",
+      "FastAPI",
+      "Hugging Face",
+      "LangChain",
+      "CUDA",
+      "Vector Database",
+      "Python",
+      "Deep Learning",
     ],
   };
 
@@ -46,6 +70,11 @@ export default function StructuredData(): React.JSX.Element {
     "@type": "WebSite",
     name: "Param Pandya Portfolio",
     url: "https://parampandya.dev",
+    author: {
+      "@type": "Person",
+      name: "Param Pandya",
+    },
+    inLanguage: "en-US",
   };
 
   return (

@@ -28,12 +28,24 @@ export const metadata: Metadata = {
       "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
     type: "profile",
     url: "https://parampandya.dev/about",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya - AI Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Param Pandya | AI Engineer",
     description:
       "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 
@@ -43,7 +55,13 @@ export default function AboutPage(): React.JSX.Element {
     "@type": "AboutPage",
     "name": "About Param Pandya | AI Engineer",
     "description": "Explore Param Pandya's engineering background, education (M.Tech CSE - VIT, B.Tech - PDEU), IIT research internships, and machine learning focus.",
-    "url": "https://parampandya.dev/about"
+    "url": "https://parampandya.dev/about",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Param Pandya",
+      "jobTitle": "Senior AI & ML Research Engineer",
+      "url": "https://parampandya.dev"
+    }
   };
 
   return (
@@ -124,15 +142,11 @@ export default function AboutPage(): React.JSX.Element {
               <div className="lg:col-span-4 flex justify-center">
                 <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border-2 border-indigo-500/40 shadow-2xl group">
                   <Image
-                    src="/assets/me-glow.png"
-                    alt="Param Pandya Glow"
+                    src="/assets/me-about.jpg"
+                    alt="Param Pandya"
                     fill
-                    className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  />
-                  <Image
-                    src="/assets/me.png"
-                    alt="Param Pandya Avatar"
-                    fill
+                    sizes="(max-width: 768px) 176px, 208px"
+                    priority
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>

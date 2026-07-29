@@ -14,12 +14,24 @@ export const metadata: Metadata = {
       "Advancing empirical AI research across media forensics, clinical NLP, and computer vision—bridging academic research across IITs with production safety.",
     type: "website",
     url: "https://parampandya.dev/research",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya Research",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Research & Publications | Param Pandya",
     description:
       "Advancing empirical AI research across media forensics, clinical NLP, and computer vision—bridging academic research across IITs with production safety.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

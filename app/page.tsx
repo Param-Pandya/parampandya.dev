@@ -30,12 +30,24 @@ export const metadata: Metadata = {
       "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
     type: "website",
     url: "https://parampandya.dev",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya AI Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Param Pandya | AI Engineer • Machine Learning Engineer",
     description:
       "AI Engineer specializing in Machine Learning, RAG applications, AI Agents, and Computer Vision. Published IEEE researcher with research experience at IIT Indore and IIT Jammu.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 
@@ -172,7 +184,7 @@ export default function Home(): React.JSX.Element {
             </h2>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-1 text-xs font-mono text-indigo-400 hover:text-indigo-300 font-semibold"
+              className="inline-flex items-center gap-1 text-xs font-mono text-[#FFEDA8] hover:text-indigo-300 font-semibold"
             >
               <span>All Projects</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -234,7 +246,7 @@ export default function Home(): React.JSX.Element {
             </h2>
             <Link
               href="/about"
-              className="inline-flex items-center gap-1 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold"
+              className="inline-flex items-center gap-1 text-xs font-mono text-[#FFEDA8] hover:text-cyan-300 font-semibold"
             >
               <span>Full About</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -271,7 +283,7 @@ export default function Home(): React.JSX.Element {
             </h2>
             <Link
               href="/research"
-              className="inline-flex items-center gap-1 text-xs font-mono text-violet-400 hover:text-violet-300 font-semibold"
+              className="inline-flex items-center gap-1 text-xs font-mono text-[#FFEDA8] hover:text-violet-300 font-semibold"
             >
               <span>Research Hub</span>
               <ArrowRight className="w-3.5 h-3.5" />

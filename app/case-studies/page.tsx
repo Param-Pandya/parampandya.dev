@@ -18,12 +18,24 @@ export const metadata: Metadata = {
       "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
     type: "website",
     url: "https://parampandya.dev/case-studies",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya Case Studies",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Engineering Case Studies | Param Pandya",
     description:
       "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

@@ -202,6 +202,7 @@ export default function ContactForm(): React.JSX.Element {
               <option value="Research Collaboration">IEEE / Research Collaboration</option>
               <option value="Freelance/Consulting">Technical AI Consulting</option>
               <option value="General Inquiry">General Technical Inquiry</option>
+              <option value="Other">Other</option>
             </select>
           </div>
         </div>

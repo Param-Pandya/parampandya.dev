@@ -50,6 +50,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       description: project.shortDescription,
       type: "website",
       url: `https://parampandya.dev/projects/${resolvedParams.id}`,
+      siteName: "Param Pandya | AI Research & Engineering",
+      locale: "en_US",
       images: [
         {
           url: project.thumbnail,
@@ -57,10 +59,15 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
         },
       ],
     },
+    authors: [{ name: "Param Pandya", url: "https://parampandya.dev" }],
+    creator: "Param Pandya",
+    publisher: "Param Pandya",
     twitter: {
       card: "summary_large_image",
       title: `${project.title} | Engineering Case Study`,
       description: project.shortDescription,
+      creator: "@parampandya",
+      images: [project.thumbnail],
     },
   };
 }

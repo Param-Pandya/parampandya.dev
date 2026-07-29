@@ -39,9 +39,10 @@ export default function BlogSection(): React.JSX.Element {
         {/* 3 Featured Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {recentPosts.map((post) => (
-            <article
+            <Link
               key={post.id}
-              className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 flex flex-col justify-between space-y-5 group relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
+              href={`/blog/${post.slug}`}
+              className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 flex flex-col justify-between space-y-5 group relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer block text-left"
             >
               {/* Cover Image */}
               <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-slate-250 dark:border-white/10 bg-slate-100 dark:bg-slate-900">
@@ -51,7 +52,7 @@ export default function BlogSection(): React.JSX.Element {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3">
+                <div className="absolute top-3 left-3 z-10">
                   <span className="px-3 py-1 rounded-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[11px] font-mono text-indigo-650 dark:text-indigo-300 font-semibold">
                     {post.category}
                   </span>
@@ -73,7 +74,7 @@ export default function BlogSection(): React.JSX.Element {
                   </div>
 
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-650 dark:group-hover:text-indigo-200 transition-colors leading-snug">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    {post.title}
                   </h3>
 
                   <p className="text-slate-650 dark:text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
@@ -82,16 +83,13 @@ export default function BlogSection(): React.JSX.Element {
                 </div>
 
                 <div className="pt-3 border-t border-slate-150 dark:border-white/5 flex items-center justify-between">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-indigo-650 dark:text-indigo-400 group-hover:text-indigo-550 dark:group-hover:text-indigo-300 transition-colors"
-                  >
+                  <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-indigo-650 dark:text-indigo-400 group-hover:text-indigo-550 dark:group-hover:text-indigo-300 transition-colors">
                     <span>Read Article</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

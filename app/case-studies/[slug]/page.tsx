@@ -34,6 +34,8 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
       description: study.subtitle,
       type: "article",
       url: `https://parampandya.dev/case-studies/${resolvedParams.slug}`,
+      siteName: "Param Pandya | AI Research & Engineering",
+      locale: "en_US",
       images: [
         {
           url: study.heroImage,
@@ -41,10 +43,15 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
         },
       ],
     },
+    authors: [{ name: "Param Pandya", url: "https://parampandya.dev" }],
+    creator: "Param Pandya",
+    publisher: "Param Pandya",
     twitter: {
       card: "summary_large_image",
       title: `${study.title} | Engineering Case Study`,
       description: study.subtitle,
+      creator: "@parampandya",
+      images: [study.heroImage],
     },
   };
 }

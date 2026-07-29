@@ -15,11 +15,23 @@ export const metadata: Metadata = {
     description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
     type: "website",
     url: "https://parampandya.dev/open-source",
+    siteName: "Param Pandya | AI Research & Engineering",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/me-about.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Param Pandya Open Source",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Open Source Contributions & Repositories | Param Pandya",
     description: "Explore Param Pandya's open source developer tools, reusable libraries, and community contributions.",
+    creator: "@parampandya",
+    images: ["/assets/me-about.jpg"],
   },
 };
 

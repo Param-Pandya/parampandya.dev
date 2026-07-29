@@ -34,6 +34,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.excerpt,
       type: "article",
       url: `https://parampandya.dev/blog/${resolvedParams.slug}`,
+      siteName: "Param Pandya | AI Research & Engineering",
+      locale: "en_US",
       publishedTime: new Date(post.publishedDate).toISOString(),
       authors: [post.author.name],
       images: [
@@ -43,10 +45,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
         },
       ],
     },
+    authors: [{ name: post.author.name, url: "https://parampandya.dev" }],
+    creator: post.author.name,
+    publisher: "Param Pandya",
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      creator: "@parampandya",
       images: [post.coverImage],
     },
   };
