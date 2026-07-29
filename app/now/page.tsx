@@ -71,7 +71,7 @@ export default function NowPage(): React.JSX.Element {
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-lg max-w-2xl leading-relaxed font-normal">
-            Inspired by Derek Sivers&apos; <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">/now page movement</a>. A public snapshot of what I&apos;m currently building, learning, reading, and working toward.
+            A snapshot of what I&apos;m currently building, learning, researching, and working toward - updated as my focus evolves.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-4">
