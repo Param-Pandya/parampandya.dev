@@ -23,8 +23,6 @@ Each of these problems forced the underlying engineering abstraction to expand. 
 
 These are not formally codified disciplines with agreed-upon boundaries; the years are approximate and the categories overlap considerably. They are better read as five layers that accumulated on top of one another as the scope of what engineers control kept widening: from instruction, to information, to action, to iteration, to orchestration. Put differently, the question changed from what the model should say, to what it should know, to what it can do, to how it should iterate, to how the whole system should behave.
 
----
-
 ## Before the LLM application era
 
 It helps to start with what came before. Traditional machine learning pipelines followed a fairly fixed shape: data went into training, training produced a model, the model produced predictions, and predictions fed an application. When performance was poor, the fix almost always involved touching the model itself — the training data, the features, the architecture, the hyperparameters, or the fine-tuning process.
@@ -32,7 +30,7 @@ It helps to start with what came before. Traditional machine learning pipelines 
 ### Architecture: Traditional ML application
 
 ```mermaid
-graph TD
+graph LR
     Data["Data"] --> Training["Training"]
     Training --> Model["Model"]
     Model --> Prediction["Prediction"]
@@ -47,8 +45,6 @@ graph TD
 
 Large language models broke that pattern. Rather than retraining a model for each new task, developers could increasingly describe the task in plain language and let a general-purpose model handle it. Brown et al.'s 2020 GPT-3 paper was an important marker of this shift, showing that scaling a language model could produce strong few-shot performance when tasks were specified through instructions and demonstrations rather than gradient updates. The developer's job changed accordingly. The model already knew how to do a great many things; the open question became how to communicate a given task to it effectively. That question gave rise to the first layer.
 
----
-
 ## 2022: Prompt engineering
 
 Prompt engineering rests on a simple premise: if a model's output depends heavily on how it is asked, then the instructions themselves become something worth engineering. Instead of building a separate model per task, developers manipulated the prompt — the instructions, the examples, the constraints — while holding the model fixed.
@@ -56,7 +52,7 @@ Prompt engineering rests on a simple premise: if a model's output depends heavil
 ### Architecture: Prompt Engineering
 
 ```mermaid
-graph TD
+graph LR
     User["User"] --> Prompt["Prompt<br/>(Instructions, Examples, Constraints, Format)"]
     Prompt --> LLM["LLM"]
     LLM --> Output["Output"]
@@ -71,8 +67,6 @@ A basic application from this period looked like a short pipeline: a user's requ
 
 Prompt engineering addressed a real problem: the model held enormous general knowledge and capability, and the challenge was activating the right slice of it for a given task. But it ran into a hard limit almost immediately. A model does not know what it was never given. An internal company assistant might reason well about programming or general history, but it has no access to a company's internal policies, current inventory, private databases, recent internal documentation, or a specific user's records — and no amount of prompt rewriting can put that information inside the model. That gap raised the next question: could the information entering the model's context be engineered directly?
 
----
-
 ## 2023: Context engineering and RAG
 
 The center of attention shifted from how to instruct the model to what information the model should actually see. It's worth noting that retrieval-augmented generation did not originate in 2023 — Lewis et al. introduced the core RAG formulation in 2020, pairing a parametric language model with a non-parametric retrieval mechanism. What changed in 2023 was that the explosion of practical LLM applications turned retrieval-based architectures into one of the default patterns for building anything that needed up-to-date or proprietary information.
@@ -80,7 +74,7 @@ The center of attention shifted from how to instruct the model to what informati
 ### Architecture: Context Engineering / RAG
 
 ```mermaid
-graph TD
+graph LR
     User["User"] --> Query["Query"]
     Query --> Retriever["Retriever"]
     Retriever --> VectorStore["Knowledge Base / Vector Store"]
@@ -104,8 +98,6 @@ The architecture grew a new stage. Rather than a user's query going straight to 
 This was necessary because model parameters are an imperfect store of knowledge. Lewis et al.'s original paper pointed specifically to the difficulty of precise knowledge access, the cost of updating what a purely parametric model knows, and the lack of provenance for its claims — all problems that retrieval at inference time could partially address. The shift also opened an entire new set of engineering concerns that had nothing to do with prompting: how documents get ingested and turned into usable knowledge, how they're chunked, how they're embedded, which chunks a retriever should surface, how those results get reranked, how the useful pieces are packed into a limited context window, and what should persist as memory across turns. "Context engineering" is a reasonable umbrella term for all of this — where prompt engineering controls the instructions themselves, context engineering controls the information that surrounds them.
 
 Once a model could pull in outside information, an adjacent question became hard to avoid: if it can retrieve from external systems, why shouldn't it also be able to act on them?
-
----
 
 ## 2024: Agent engineering
 
@@ -140,8 +132,6 @@ graph TD
 
 Architecturally, this added a tool-selection stage between the model and its output: the model chooses among available tools such as search, an API, or a database, receives results back, and continues reasoning before finally responding. The important shift is that a tool call is rarely the end of a task. A search might turn up something that needs a second search. An API might return an error. Generated code might fail its tests. A claim might need independent verification. In each case, the system has to keep working rather than stopping after one action, and that need for continuation is what the next layer addresses.
 
----
-
 ## 2025: Loop engineering
 
 "Loop engineering" is used here deliberately as a descriptive label rather than a claim that the industry has settled on the term. The underlying pattern, though, is real and widely observed: agent systems increasingly run on an iterative cycle of reasoning, acting, observing the result, evaluating whether that result is good enough, and repeating if it isn't. That is a meaningful departure from a single LLM call, because the system is now allowed to respond to its own intermediate output rather than committing to a first attempt.
@@ -170,8 +160,6 @@ Loops became necessary because difficult tasks are rarely solved correctly on th
 This raised a fresh set of engineering questions that prompting and retrieval never had to answer: how many iterations should be permitted, what should count as success or failure, whether the system should retry with the same approach or switch strategies, whether a separate model should evaluate the result, how to prevent runaway loops, and how to keep token costs and latency under control given that the model is now part of an ongoing control process rather than a one-shot generator.
 
 Loops are straightforward when the underlying workflow is genuinely linear. Real applications, though, don't always stay that simple. A task might need to be classified first, then routed to a search step, a database lookup, or a human reviewer depending on what it turns out to require, with the results funneling back into an evaluation step that decides whether to retry or move on. At that point a developer isn't really engineering a loop anymore — they're engineering a workflow with branches, which is a natural lead-in to graphs.
-
----
 
 ## 2026: Graph engineering
 
@@ -205,8 +193,6 @@ graph TD
 ```
 
 The reasoning behind this shift is straightforward: a sufficiently complex AI application is often represented more faithfully as a graph than as a single loop. A multi-agent research system illustrates the point. A planner receives the user's request and distributes work across, say, a research agent, a search agent, and a domain-expert agent; their outputs converge on an evaluator, which either sends the work back to the planner for another pass or forwards it to a synthesizer that produces the final answer for the user. Some of the nodes in a system like this are purely deterministic, some contain individual LLM calls, some contain entire agents, some call external tools, some loop internally, and some require a human to sign off before continuing. Taken together, this is a stateful workflow rather than a single reasoning chain.
-
----
 
 ## What separates a graph from a loop
 
@@ -248,8 +234,6 @@ State captures what the system currently knows — the user's original request, 
 
 This kind of explicit control is a large part of why graph-based orchestration has become attractive for production systems. LangGraph's own architecture treats nodes as units of work operating over shared state and edges as the rules for how execution proceeds between them, and its creators have been fairly direct about the motivation: developers often want more control than a simple agent loop offers — forcing a particular tool, constraining how tools are called, adjusting prompts based on the current state, or inserting a human approval step at a specific point.
 
----
-
 ## Multi-agent graphs
 
 Graph-based thinking becomes especially useful once multiple agents are involved, because it gives each one a clearly bounded role. In a typical multi-agent setup, a supervisor distributes work among specialized agents — research, coding, analysis — each of which can carry its own prompt, its own tools, its own underlying model, and its own memory; their outputs converge on an evaluator before returning to the supervisor. LangGraph's early multi-agent documentation described this in graph terms explicitly: agents become nodes, and the communication and control flow between them become edges.
@@ -274,8 +258,6 @@ graph TD
 ```
 
 The architectural principle that falls out of this is fairly intuitive: a single agent shouldn't be made responsible for everything if the underlying problem decomposes naturally into specialized roles. A research agent generally doesn't need every tool a coding agent needs, a coding agent doesn't need a research agent's tools, and a financial-analysis agent may need an entirely different toolkit from a customer-support agent. Representing the system as a graph makes those boundaries explicit rather than leaving them implicit inside one overloaded agent.
-
----
 
 ## The five layers accumulate rather than replace each other
 
@@ -305,8 +287,6 @@ graph TD
     style BaseLLM fill:#064e3b,stroke:#10b981,color:#f8fafc
 ```
 
----
-
 ## Where MCP fits
 
 The Model Context Protocol is a useful example of a more recent, narrower development within this picture: a standardized way for AI systems to connect to external tools and data sources. It sits primarily at the context and tool-integration layer rather than functioning as a substitute for agents or graphs — it answers a specific question about how applications connect to the outside world in a consistent way, not the broader question of how a whole system should be orchestrated. A modern graph-based system might use MCP as the common interface through which several agents reach shared resources such as a database, an API, or a filesystem. This reinforces the larger point: the modern AI stack is not one technique layered thinly over a model, but a set of increasingly composable engineering layers that each address a different part of the problem.
@@ -332,8 +312,6 @@ graph TD
     style FS fill:#064e3b,stroke:#10b981,color:#f8fafc
 ```
 
----
-
 ## Where this might go next
 
 If this progression continues, the next step may not be another discrete framework so much as a shift toward systems that construct and revise their own workflows rather than relying on engineers to define every path in advance. Instead of a fixed sequence of steps laid out by a developer, a system might determine what capabilities a goal requires, construct a workflow suited to it, execute that workflow, evaluate the outcome, and revise the workflow itself before continuing.
@@ -358,8 +336,6 @@ graph TD
 ```
 
 That said, more autonomy is not automatically an improvement. As a system is given more freedom to act and modify its own behavior, the engineering work around it has to grow correspondingly — safety constraints, permissioning, observability, evaluation, the ability to roll back a bad decision, human oversight, cost controls, and clearly deterministic boundaries around what the system is and isn't allowed to do on its own. The likely direction, then, is probably not "let the system handle everything," but something closer to giving a system latitude where flexibility genuinely helps and imposing deterministic control where reliability matters more — which is exactly the kind of distinction graph-based architectures are built to express.
-
----
 
 ## Summary
 
@@ -391,27 +367,19 @@ graph TD
 
 Once applications reach this level of complexity, writing a good prompt is only a small part of the job. A production AI engineer is realistically working across several layers at once: model selection and routing; prompt design; retrieval, memory, and context construction; integration with external tools and APIs; agent planning and decision-making; retry logic, evaluation, and error recovery; graph state, routing, and human approval steps; and the surrounding infrastructure of observability, tracing, security, latency, and cost.
 
----
-
 ## The cost side of graph engineering
 
 None of this makes graphs an unconditionally better choice, and it would be a mistake to read this piece as another argument that agents or graphs are simply the future and should be adopted by default. Every additional node in a graph is a potential failure point. Every additional agent adds communication overhead. Every additional LLM call adds cost, latency, and another chance for a hallucinated output, on top of making the system harder to debug. More state means memory management and consistency become real engineering problems in their own right, and more branches make both testing and evaluation substantially harder, since edge cases multiply with every added path.
 
 The right lesson isn't that agents or graphs should always be used — it's closer to the opposite. Use the simplest architecture that reliably solves the problem in front of you. A plain prompt beats an agent when a prompt is enough to get the job done. A deterministic workflow beats an autonomous agent when the process is genuinely predictable. One agent beats five when a single agent can handle the task reliably on its own. A loop beats a graph when the process really is just a loop. Graphs earn their complexity only when a system has enough state, branching, coordination, and need for control that those relationships have to be made explicit to work at all.
 
----
-
 ## Is prompt engineering dead?
 
 No, and this is one of the more persistent misreadings of how this evolution actually went. Prompt engineering did not disappear; it became embedded inside larger architectures. A graph node may contain a prompt. An agent may run on several prompts internally. A retrieval system may use a prompt just to generate better search queries. An evaluator, a planner, or a tool-selection component may each be built on a prompt of their own. Prompt engineering did not become irrelevant so much as it became one component among several — the same is true of RAG, which agents frequently depend on rather than replace, and of loops, which graphs frequently contain rather than supersede. The overall trajectory here is composition, not replacement.
 
----
-
 ## A new mental model
 
 The core lesson from all of this isn't that every engineer needs to learn a new framework each year. It's that the basic unit of engineering has kept expanding: from the model itself, to the prompt, to the context, to the agent, to the loop, and now increasingly to the system as a whole. The model is no longer the application — it's a component inside the application — and the engineers who work well in this space increasingly need to think simultaneously like software engineers, systems engineers, distributed-systems designers, ML engineers, product engineers, and workflow designers.
-
----
 
 ## Conclusion
 
