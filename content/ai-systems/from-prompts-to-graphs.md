@@ -149,7 +149,7 @@ Architecturally, this added a tool-selection stage between the model and its out
 ### Architecture: Loop Engineering
 
 ```mermaid
-graph TD
+graph LR
     Goal["Goal"] --> Reason["Reason"]
     Reason --> Act["Act"]
     Act --> Observe["Observe"]
