@@ -66,7 +66,7 @@ export default async function BlogPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-            AI Engineering Blog
+            Learning Notes
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-lg max-w-2xl leading-relaxed font-normal mb-6">

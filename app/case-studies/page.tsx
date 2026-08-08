@@ -66,7 +66,7 @@ export default function CaseStudiesPage(): React.JSX.Element {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-            Engineering Case Studies
+            Blogs
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-lg max-w-2xl leading-relaxed font-normal">
@@ -78,9 +78,10 @@ export default function CaseStudiesPage(): React.JSX.Element {
       {/* Case Studies List */}
       <section className="container mx-auto max-w-5xl px-4 sm:px-6 pb-24 space-y-8">
         {caseStudiesData.map((study) => (
-          <div
+          <Link
             key={study.slug}
-            className="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 border border-white/15 space-y-6 bg-slate-950/90 shadow-2xl relative overflow-hidden group"
+            href={`/case-studies/${study.slug}`}
+            className="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 border border-white/15 space-y-6 bg-slate-950/90 shadow-2xl relative overflow-hidden group cursor-pointer block"
           >
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
               <span className="px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-mono font-bold">
@@ -123,15 +124,12 @@ export default function CaseStudiesPage(): React.JSX.Element {
             </div>
 
             <div className="pt-4 flex items-center justify-between">
-              <Link
-                href={`/case-studies/${study.slug}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-mono font-bold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:opacity-95 transition-all shadow-md shadow-indigo-500/20"
-              >
-                <span>Read Full Case Study</span>
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-mono font-bold text-white bg-gradient-to-r from-indigo-600 to-violet-600 group-hover:opacity-95 transition-all shadow-md shadow-indigo-500/20">
+                <span>Read Full Article</span>
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </section>
 

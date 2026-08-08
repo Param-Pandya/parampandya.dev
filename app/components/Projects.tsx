@@ -25,10 +25,10 @@ export default function Projects(): React.JSX.Element {
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono tracking-widest uppercase mb-4">
-            <BookOpen className="w-3.5 h-3.5" /> 03 // Peer-Reviewed Case Studies
+            <BookOpen className="w-3.5 h-3.5" /> 03 // Peer-Reviewed Research Systems
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Case Studies & Research Systems
+            Projects & Research Systems
           </h2>
           <p className="mt-4 text-slate-700 dark:text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
             Detailed technical breakdowns of AI research, deep learning architectures, and production models.
@@ -43,7 +43,8 @@ export default function Projects(): React.JSX.Element {
             return (
               <div
                 key={project.id}
-                className="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden group shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                onClick={() => setSelectedProject(project)}
+                className="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden group shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
               >
                 {/* Top Corner Featured Ribbon Badge */}
                 <div className="absolute top-0 right-0 z-10">
@@ -101,13 +102,14 @@ export default function Projects(): React.JSX.Element {
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 shadow-lg shadow-indigo-500/25 transition-all active:scale-95 cursor-pointer"
                       >
                         <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                        <span>Read Case Study</span>
+                        <span>Read Project Details</span>
                         <ChevronRight className="w-4 h-4" />
                       </button>
 
                       {/* GitHub Link */}
                       <a
                         href={project.githubUrl}
+                        onClick={(e) => e.stopPropagation()}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-mono text-slate-700 dark:text-slate-300 glass-card hover:bg-slate-200/50 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all"
@@ -122,6 +124,7 @@ export default function Projects(): React.JSX.Element {
                       {project.paperUrl && (
                         <a
                           href={project.paperUrl}
+                          onClick={(e) => e.stopPropagation()}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-mono text-slate-700 dark:text-slate-300 glass-card hover:bg-slate-200/50 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all"
@@ -134,6 +137,7 @@ export default function Projects(): React.JSX.Element {
                       {/* Dedicated Route Navigation */}
                       <Link
                         href={`/projects/${project.id}`}
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors ml-auto"
                       >
                         <span>Dedicated Page</span>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Script from "next/script";
+import Mermaid from "../../components/Mermaid";
 import { GithubIcon } from "../../components/SocialIcons";
 import { projectsData, getProjectById } from "../../data/projectsData";
 import {
@@ -105,6 +107,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
       />
+      <Script
+        src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
+        strategy="lazyOnload"
+      />
       <Header />
 
       {/* Header Breadcrumb & Banner */}
@@ -137,6 +143,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2">
+            {project.liveDemoUrl && (
+              <a
+                href={project.liveDemoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-mono font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 transition-all shadow-lg shadow-emerald-500/25"
+              >
+                <ExternalLink className="w-4 h-4 text-emerald-200" /> Live Demo Application
+              </a>
+            )}
             <a
               href={project.githubUrl}
               target="_blank"
@@ -213,7 +229,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </p>
             </div>
 
-            {project.architecture.diagramSnippet && (
+            {project.architecture.diagramMermaid ? (
+              <div className="space-y-2">
+                <span className="text-slate-400 font-mono text-xs font-bold uppercase tracking-widest block">
+                  ARCHITECTURAL FLOW DIAGRAM:
+                </span>
+                <div className="p-4 sm:p-6 rounded-2xl bg-slate-950/90 border border-white/10 overflow-x-auto">
+                  <Mermaid chart={project.architecture.diagramMermaid} />
+                </div>
+              </div>
+            ) : project.architecture.diagramSnippet && (
               <div className="p-4 rounded-xl bg-slate-900 border border-white/10 font-mono text-xs text-indigo-300 overflow-x-auto">
                 <span className="text-slate-500 font-bold block mb-1">ARCHITECTURAL DATA FLOW:</span>
                 {project.architecture.diagramSnippet}

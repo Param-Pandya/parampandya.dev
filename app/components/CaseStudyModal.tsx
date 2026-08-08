@@ -64,7 +64,7 @@ export default function CaseStudyModal({
               {project.ribbon}
             </span>
             <span className="text-xs font-mono text-slate-400 hidden sm:inline-block">
-              CASE STUDY Showcase
+              ENGINEERING Showcase
             </span>
           </div>
 
@@ -323,7 +323,7 @@ export default function CaseStudyModal({
           {/* Section 10: Related Projects */}
           {relatedProjects.length > 0 && (
             <div className="space-y-4 pt-6 border-t border-white/10">
-              <h2 className="text-xl font-bold text-white">Related Case Studies</h2>
+              <h2 className="text-xl font-bold text-white">Related Projects</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {relatedProjects.map((rel) => (
                   <div

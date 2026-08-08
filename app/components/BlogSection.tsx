@@ -18,7 +18,7 @@ export default function BlogSection(): React.JSX.Element {
               <BookOpen className="w-3.5 h-3.5" /> 04 // AI Research & Technical Writings
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Latest Blog Articles
+              Latest Learning Notes
             </h2>
             <p className="mt-3 text-slate-700 dark:text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
               Technical breakdowns on Autonomous Agents, RAG optimization, LLM fine-tuning, and Deep Learning.
@@ -30,7 +30,7 @@ export default function BlogSection(): React.JSX.Element {
               href="/blog"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition-all active:scale-95 cursor-pointer"
             >
-              <span>Explore All Articles</span>
+              <span>Explore Learning Notes</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -84,7 +84,7 @@ export default function BlogSection(): React.JSX.Element {
 
                 <div className="pt-3 border-t border-slate-150 dark:border-white/5 flex items-center justify-between">
                   <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-indigo-650 dark:text-indigo-400 group-hover:text-indigo-550 dark:group-hover:text-indigo-300 transition-colors">
-                    <span>Read Article</span>
+                    <span>Read Note</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>

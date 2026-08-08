@@ -193,9 +193,10 @@ export default function Home(): React.JSX.Element {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {featuredProjects.map((project) => (
-              <div
+              <Link
                 key={project.id}
-                className="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between space-y-4"
+                href={`/projects/${project.id}`}
+                className="glass-card glass-card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between space-y-4 group cursor-pointer block"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
@@ -204,7 +205,7 @@ export default function Home(): React.JSX.Element {
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
                     {project.title}
                   </h3>
 
@@ -225,15 +226,12 @@ export default function Home(): React.JSX.Element {
                     ))}
                   </div>
 
-                  <Link
-                    href={`/projects/${project.id}`}
-                    className="inline-flex items-center justify-between w-full px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-indigo-300 transition-colors"
-                  >
+                  <div className="inline-flex items-center justify-between w-full px-3.5 py-2 rounded-xl bg-white/[0.03] group-hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-indigo-300 transition-colors">
                     <span>View Project Details</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

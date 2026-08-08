@@ -20,6 +20,7 @@ export interface ProjectCaseStudy {
     description: string;
     components: string[];
     diagramSnippet?: string;
+    diagramMermaid?: string;
   };
   implementation: string;
   techStack: Array<{ category: string; tools: string[] }>;
@@ -47,6 +48,110 @@ export interface ProjectCaseStudy {
 }
 
 export const projectsData: ProjectCaseStudy[] = [
+  {
+    id: "wayvify",
+    title: "WayVify",
+    ribbon: "AI Agents",
+    ribbonColor: "bg-cyan-500 text-white shadow-cyan-500/50",
+    category: "🧠 AI Agents",
+    shortDescription: "An AI-powered multi-agent travel planner that coordinates specialized agents for flights, hotels, weather, budgets, and itinerary generation with human-in-the-loop review.",
+    problemSolved: "Traditional travel planning relies on manual multi-tab research or single-prompt chatbots that struggle with complex constraint decomposition, real-time external tool integration, multi-currency budget calculation, and stateful human feedback loops.",
+    thumbnail: "/projects/deepfake.png",
+    technologies: ["LangGraph", "MCP", "Multi-Agent AI", "HITL", "FastAPI", "Groq", "Llama 3.3 70B", "Python"],
+    githubUrl: "https://github.com/Param-Pandya/wayvify",
+    liveDemoUrl: "https://wayvify.parampandya.dev/",
+    overview: "WayVify is an AI-powered multi-agent travel planning system built with LangGraph, MCP, FastAPI, and LLM-based agent orchestration. It transforms natural-language travel requests into personalized, budget-aware, and weather-informed travel plans. Unlike a conventional single-prompt travel chatbot, WayVify uses a Supervisor Agent to understand travel requirements, extract constraints, and dynamically route tasks to specialized agents for flight discovery, hotel research, weather analysis, budget planning, and itinerary synthesis. The system integrates the Model Context Protocol (MCP) to connect agents with external tools and services, including aviation data, web search, and weather information. After generating a draft itinerary, the workflow pauses using LangGraph's Human-in-the-Loop mechanism, allowing the user to approve the plan or provide feedback before the final itinerary is generated. WayVify also supports multi-currency budget analysis, itinerary export, PDF generation, and a dedicated technical documentation interface.",
+    problem: "From chatbot-style prompting to agent orchestration. WayVify is designed around task decomposition and specialized agents rather than a single LLM call. A central Supervisor Agent determines what information is required, routes work to domain-specific agents, aggregates their results, and pauses the workflow for human review before producing the final plan. This architecture allows different capabilities—flight research, accommodation discovery, weather analysis, budget evaluation, and itinerary generation—to operate as coordinated components within a single workflow.",
+    architecture: {
+      title: "Supervisor-Worker Multi-Agent Architecture with MCP & HITL",
+      description: "A central Supervisor Agent understands the user's travel request, extracts constraints (destination, duration, origin, budget), and dynamically routes tasks to specialized worker agents (Flight, Hotel, Weather, Budget). Outputs are aggregated into a structured draft itinerary before pausing via LangGraph's interrupt() mechanism for Human-in-the-Loop approval.",
+      components: [
+        "🧠 Supervisor Agent (Constraint Extraction & Dynamic Task Routing)",
+        "✈️ Flight Agent (AviationStack Tooling & Flight Insights)",
+        "🏨 Hotel Discovery Agent (Tavily Search & Local Accommodations)",
+        "🌤️ Weather Agent (Custom OpenWeather MCP Server & Forecasts)",
+        "💰 Budget Analyst (Multi-Currency Support: INR, USD, EUR, GBP)",
+        "🗺️ Itinerary Aggregation (Structured Multi-Agent Travel Synthesis)",
+        "👤 Human-in-the-Loop (LangGraph interrupt() Draft Approval & Revision)",
+        "🔌 MCP Integration (Model Context Protocol Standardized Tooling)",
+        "📄 Travel Plan Export (Markdown Rendering, PDF Export, Clipboard Copy)"
+      ],
+      diagramSnippet: "User Request -> Input Guardrails -> Supervisor Agent -> [Flight + Hotel + Weather + Budget Agents] -> Itinerary Aggregator -> Human-in-the-Loop interrupt() -> Final Travel Plan -> PDF Export",
+      diagramMermaid: `graph TD
+    User["User Travel Request"] --> Guardrails["Input Guardrails"]
+    Guardrails --> Supervisor["Supervisor Agent"]
+    
+    Supervisor --> Flight["Flight Agent"]
+    Supervisor --> Hotel["Hotel Discovery Agent"]
+    Supervisor --> Weather["Weather Agent"]
+    Supervisor --> Budget["Budget Analyst"]
+    
+    Flight --> Aggregator["Itinerary Aggregator"]
+    Hotel --> Aggregator
+    Weather --> Aggregator
+    Budget --> Aggregator
+    
+    Aggregator --> HITL["Human-in-the-Loop interrupt()"]
+    
+    HITL -->|Revise / Feedback| Supervisor
+    HITL -->|Approve| Final["Final Travel Plan"]
+    
+    Final --> Export["PDF / Copy / Export"]
+    
+    style User fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Guardrails fill:#0f172a,stroke:#f59e0b,color:#f8fafc
+    style Supervisor fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Flight fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Hotel fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Weather fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Budget fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Aggregator fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style HITL fill:#451a03,stroke:#f59e0b,color:#f8fafc
+    style Final fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style Export fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`
+    },
+    implementation: "Developed in Python using FastAPI and LangGraph for stateful multi-agent execution. Integrated the Model Context Protocol (MCP) to provide standardized tool interfaces for AviationStack, Tavily, and OpenWeather. Powered by Groq Llama 3.3 70B for high-speed inference and deployed on Vercel with PostgreSQL / MemorySaver state persistence.",
+    techStack: [
+      { category: "AI / Agent Framework", tools: ["LangGraph", "LLM-based Agent Orchestration", "Human-in-the-Loop", "Supervisor/Worker Agent Architecture"] },
+      { category: "Tool Integration", tools: ["Model Context Protocol (MCP)", "Tavily", "AviationStack", "OpenWeather"] },
+      { category: "Backend & AI Model", tools: ["Python", "FastAPI", "Llama 3.3 70B via Groq"] },
+      { category: "Deployment & Infrastructure", tools: ["Vercel", "Serverless Python", "PostgreSQL / MemorySaver", "PDF Generation", "REST APIs"] }
+    ],
+    challenges: [
+      "1. Multi-Agent Coordination: Designing reliable routing between a Supervisor Agent and multiple specialized agents.",
+      "2. Tool Integration: Connecting agents to external services through MCP while maintaining a consistent interface for different tools.",
+      "3. Stateful Human-in-the-Loop Workflow: Pausing an active LangGraph workflow, presenting the generated draft to the user, and resuming execution based on approval or feedback.",
+      "4. Async Serverless Deployment: Adapting the FastAPI/LangGraph backend and MCP integrations for serverless execution on Vercel."
+    ],
+    results: {
+      metrics: [
+        { label: "Agent Architecture", value: "Multi-Agent" },
+        { label: "Tooling Standard", value: "MCP Protocol" },
+        { label: "LLM Model", value: "Llama 3.3 70B" },
+        { label: "Workflow Mode", value: "Stateful HITL" }
+      ],
+      summary: "Built a multi-agent travel orchestration system rather than a single-prompt chatbot. Implemented dynamic agent routing through a Supervisor Agent, integrated external travel tools using MCP, added Human-in-the-Loop itinerary approval and revision, implemented multi-currency budget analysis, deployed the live application, and evolved the concept from earlier TripGenie research into a dedicated multi-agent architecture."
+    },
+    lessonsLearned: [
+      "Task decomposition into specialized worker agents significantly improves output quality and tool groundings over monolithic LLM prompts.",
+      "Standardizing external API access via Model Context Protocol (MCP) simplifies tool maintenance and agent interoperability.",
+      "LangGraph state checkpointers (MemorySaver) enable seamless pause-and-resume human approval loops."
+    ],
+    futureImprovements: [
+      "Adding real-time booking API integration for direct flight and hotel reservations.",
+      "Expanding MCP tool integrations for transit schedules and local activity recommendations."
+    ],
+    screenshots: ["/projects/deepfake.png"],
+    workflow: [
+      "1. User submits natural-language travel request.",
+      "2. Supervisor Agent extracts constraints (destination, duration, budget, origin).",
+      "3. Specialist agents execute in parallel (Flight, Hotel, Weather, Budget).",
+      "4. Itinerary Aggregator synthesizes draft plan.",
+      "5. LangGraph interrupt() pauses workflow for Human-in-the-Loop review.",
+      "6. User approves or provides feedback to generate final travel plan."
+    ],
+    relatedProjectIds: ["multi-agent-marketing-ai", "career-ai"]
+  },
   {
     id: "career-ai",
     title: "CareerAI",

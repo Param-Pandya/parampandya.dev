@@ -53,7 +53,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
           <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400 select-none pointer-events-none" />
           <input
             type="text"
-            placeholder="Search articles, tags or domains..."
+            placeholder="Search notes, tags or domains..."
             value={searchQuery === " " ? "" : searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/50 dark:bg-slate-900/60 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors"
@@ -71,7 +71,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
                 : "text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-900/60 border border-slate-250 dark:border-white/10 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
             }`}
           >
-            All Articles
+            All Learning Notes
           </button>
 
           {/* Row 2: Specific Categories in a single scrolling/fitting horizontal row */}
@@ -155,7 +155,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
         </div>
       ) : filteredPosts.length === 0 ? (
         <div className="text-center py-16 text-slate-500 font-mono text-sm">
-          No articles found matching "{query}"
+          No learning notes found matching "{query}"
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -199,7 +199,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-500 dark:text-slate-450">{post.publishedDate}</span>
                   <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
-                    <span>Read Article</span>
+                    <span>Read Note</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

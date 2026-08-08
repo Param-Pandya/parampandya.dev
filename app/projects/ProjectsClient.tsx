@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { projectsData } from "../data/projectsData";
-import { FolderGit2, ArrowRight, Code2 } from "lucide-react";
+import { FolderGit2, ArrowRight, Code2, ExternalLink } from "lucide-react";
 
 export default function ProjectsClient(): React.JSX.Element {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const categories = [
@@ -87,7 +89,8 @@ export default function ProjectsClient(): React.JSX.Element {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 border border-white/15 space-y-6 flex flex-col justify-between group relative overflow-hidden bg-slate-950/80"
+              onClick={() => router.push(`/projects/${project.id}`)}
+              className="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 border border-white/15 space-y-6 flex flex-col justify-between group relative overflow-hidden bg-slate-950/80 cursor-pointer"
             >
               <div className="space-y-4">
                 {/* Header Tag & Category */}
@@ -143,16 +146,28 @@ export default function ProjectsClient(): React.JSX.Element {
                 </div>
 
                 <div className="flex items-center justify-between gap-3 pt-2">
-                  <Link
-                    href={`/projects/${project.id}`}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all flex-1"
-                  >
-                    <span>Read Mini-Engineering Blog</span>
+                  <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold text-white bg-indigo-600 group-hover:bg-indigo-500 transition-all flex-1">
+                    <span>Read Project Details</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  </div>
+
+                  {project.liveDemoUrl && (
+                    <a
+                      href={project.liveDemoUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:text-white hover:bg-emerald-500/20 transition-colors"
+                      aria-label="Live Demo Application"
+                      title="Live Demo Application"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
 
                   <a
                     href={project.githubUrl}
+                    onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2.5 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors"

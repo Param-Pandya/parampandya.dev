@@ -128,7 +128,7 @@ const timelineData: TimelineNode[] = [
         { label: "ROUGE-L Score", value: "0.84" },
       ],
       technologies: ["BioGPT", "Hugging Face", "SNOMED CT", "FDA API", "PyTorch"],
-      actionLink: { label: "View Case Study", url: "/#projects" },
+      actionLink: { label: "View Project Details", url: "/#projects" },
     },
     badgeColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
   },

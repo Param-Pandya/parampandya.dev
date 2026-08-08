@@ -257,7 +257,7 @@ export default function ResearchClient(): React.JSX.Element {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-1 h-1 rounded-full bg-cyan-400"></span>
-                  <span>Case Studies</span>
+                  <span>Blogs</span>
                 </div>
               </div>
             </div>

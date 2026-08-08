@@ -185,7 +185,7 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
                 href="/case-studies"
                 className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 hover:underline mb-6"
               >
-                ← Back
+                ← Back to Blogs
               </Link>
 
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-slate-400 mb-4 select-none">
@@ -509,7 +509,7 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
               href="/case-studies"
               className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 hover:underline mb-6"
             >
-              ← Back
+              ← Back to Blogs
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-slate-400 mb-4 select-none">

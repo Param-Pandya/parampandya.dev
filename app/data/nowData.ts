@@ -46,8 +46,8 @@ export const nowData: NowPageData = {
       link: "/projects/gmsac",
     },
     {
-      title: "AI Portfolio & Technical Blog",
-      description: "Building a documentation-style portfolio featuring AI engineering articles, technical case studies, and project documentation focused on LLMs, RAG, AI Agents, Computer Vision, and MLOps.",
+      title: "AI Portfolio & Learning Notes",
+      description: "Building a documentation-style portfolio featuring AI engineering blogs, learning notes, and project documentation focused on LLMs, RAG, AI Agents, Computer Vision, and MLOps.",
       tech: ["React", "TypeScript", "Markdown", "Tailwind CSS"],
     },
   ],
@@ -99,10 +99,10 @@ export const nowData: NowPageData = {
       description: "Actively preparing for and applying to AI Engineer, Machine Learning Engineer, and Generative AI roles while strengthening practical engineering skills.",
     },
     {
-      goal: "Publish high-quality AI engineering articles",
+      goal: "Publish high-quality AI engineering blogs & learning notes",
       timeframe: "Ongoing",
       status: "In Progress",
-      description: "Building a documentation-style technical blog covering LLMs, RAG, AI Agents, Computer Vision, Machine Learning, AI Systems, and MLOps.",
+      description: "Building documentation-style learning notes covering LLMs, RAG, AI Agents, Computer Vision, Machine Learning, AI Systems, and MLOps.",
     },
     {
       goal: "Build production-ready AI projects",
