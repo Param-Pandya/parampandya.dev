@@ -99,7 +99,7 @@ export default function Footer(): React.JSX.Element {
             </h4>
             <ul className="space-y-2 text-xs font-mono">
               <li>
-                <Link href="/blog" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
+                <Link href="/notes" className="hover:text-indigo-650 dark:hover:text-indigo-300 transition-colors">
                   Notes
                 </Link>
               </li>

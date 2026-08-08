@@ -5,11 +5,11 @@ import Link from "next/link";
 import { BlogPostParsed } from "../../lib/markdown";
 import { BookOpen, ArrowRight, Clock, Search, Layers } from "lucide-react";
 
-interface BlogPageClientProps {
+interface NotesPageClientProps {
   posts: BlogPostParsed[];
 }
 
-export default function BlogPageClient({ posts }: BlogPageClientProps): React.JSX.Element {
+export default function NotesPageClient({ posts }: NotesPageClientProps): React.JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>(" ");
 
@@ -162,7 +162,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
           {filteredPosts.map((post) => (
             <Link
               key={post.id}
-              href={`/blog/${post.slug}`}
+              href={`/notes/${post.slug}`}
               className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 space-y-4 flex flex-col justify-between group bg-slate-950/80 cursor-pointer block text-left transition-all duration-300 hover:-translate-y-1.5"
             >
               <div className="space-y-3">

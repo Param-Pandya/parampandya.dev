@@ -27,7 +27,7 @@ export default function BlogSection(): React.JSX.Element {
 
           <div>
             <Link
-              href="/blog"
+              href="/notes"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition-all active:scale-95 cursor-pointer"
             >
               <span>Explore Notes</span>
@@ -41,7 +41,7 @@ export default function BlogSection(): React.JSX.Element {
           {recentPosts.map((post) => (
             <Link
               key={post.id}
-              href={`/blog/${post.slug}`}
+              href={`/notes/${post.slug}`}
               className="glass-card glass-card-hover rounded-3xl p-6 border border-slate-200 dark:border-white/10 flex flex-col justify-between space-y-5 group relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer block text-left"
             >
               {/* Cover Image */}

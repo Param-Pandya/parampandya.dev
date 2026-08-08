@@ -7,7 +7,7 @@ import MermaidAutoInit from "../../components/MermaidAutoInit";
 import { getBlogPosts, getPostBySlug, extractToc } from "../../../lib/markdown";
 import { ArrowLeft, Clock } from "lucide-react";
 
-interface BlogPostPageProps {
+interface NotePostPageProps {
   params: Promise<{ slug: string }>;
 }
 
@@ -18,23 +18,23 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: NotePostPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostBySlug(resolvedParams.slug);
   if (!post) {
-    return { title: "Post Not Found | Param Pandya" };
+    return { title: "Note Not Found | Param Pandya" };
   }
   return {
-    title: `${post.title} | Param Pandya Blog`,
+    title: `${post.title} | Param Pandya Notes`,
     description: post.excerpt,
     alternates: {
-      canonical: `/blog/${resolvedParams.slug}`,
+      canonical: `/notes/${resolvedParams.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
-      url: `https://parampandya.dev/blog/${resolvedParams.slug}`,
+      url: `https://parampandya.dev/notes/${resolvedParams.slug}`,
       siteName: "Param Pandya | AI Research & Engineering",
       locale: "en_US",
       publishedTime: new Date(post.publishedDate).toISOString(),
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function NotePostPage({ params }: NotePostPageProps) {
   const resolvedParams = await params;
   const post = getPostBySlug(resolvedParams.slug);
 
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Header Metadata Block */}
             <div>
               <Link
-                href="/blog"
+                href="/notes"
                 className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-indigo-650 dark:text-indigo-400 hover:underline mb-6"
               >
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Notes
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
 
               <Link
-                href="/blog"
+                href="/notes"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-350 transition-all border border-slate-200 dark:border-white/5"
               >
                 <span>Explore More Notes</span>

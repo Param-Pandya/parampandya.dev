@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import BlogPageClient from "./BlogPageClient";
+import NotesPageClient from "./NotesPageClient";
 import { getBlogPosts } from "../../lib/markdown";
 import { BookOpen } from "lucide-react";
 
@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   title: "Technical Notes | Param Pandya",
   description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
   alternates: {
-    canonical: "/blog",
+    canonical: "/notes",
   },
   openGraph: {
     title: "Technical Notes | Param Pandya",
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     type: "website",
-    url: "https://parampandya.dev/blog",
+    url: "https://parampandya.dev/notes",
     siteName: "Param Pandya | AI Research & Engineering",
     locale: "en_US",
     images: [
@@ -36,23 +36,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage() {
+export default async function NotesPage() {
   // Read posts from content/ directory
   const posts = getBlogPosts();
 
-  const blogPageSchema = {
+  const notesPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Technical Notes | Param Pandya",
     "description": "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
-    "url": "https://parampandya.dev/blog"
+    "url": "https://parampandya.dev/notes"
   };
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(notesPageSchema) }}
       />
       <Header />
 
@@ -75,9 +75,9 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Listing & Interactive Filters Grid */}
+      {/* Notes Listing & Interactive Filters Grid */}
       <section className="container mx-auto max-w-6xl px-4 sm:px-6 pb-24">
-        <BlogPageClient posts={posts} />
+        <NotesPageClient posts={posts} />
       </section>
 
       <Footer />

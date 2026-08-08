@@ -100,7 +100,7 @@ export const caseStudiesData: EngineeringCaseStudy[] = [
       "The goal of AI engineering moved from writing the perfect prompt to designing the right system boundaries around the model.",
       "Use the simplest architecture that solves the problem—a prompt beats an agent when a prompt is enough.",
     ],
-    projectLink: "/blog/from-prompts-to-graphs",
+    projectLink: "/notes/from-prompts-to-graphs",
   },
   {
     slug: "chatgpt-long-conversations",
