@@ -37,7 +37,7 @@ export const caseStudiesData: EngineeringCaseStudy[] = [
     subtitle: "How AI engineering moved from controlling what a model says to controlling how an entire system behaves.",
     category: "AI Systems Engineering",
     readTime: "12 min read",
-    date: "2026",
+    date: "August 8, 2026",
     heroImage: "/projects/deepfake.png",
     whyItExists:
       "As AI applications matured beyond single-prompt chatbots, developers faced new challenges: handling missing knowledge, taking real-world actions, retrying failed steps, coordinating multi-agent teams, and enforcing deterministic boundaries. This article traces the 5-stage evolutionary progression from Prompt Engineering (2022) to Graph Engineering (2026).",

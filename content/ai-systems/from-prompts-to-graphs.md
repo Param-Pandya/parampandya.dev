@@ -4,7 +4,7 @@ description: "How AI engineering moved from controlling what a model says to con
 category: "AI Systems"
 tags: ["AI Systems", "Agentic Systems", "LangGraph", "System Architecture", "LLMs"]
 author: "Param Pandya"
-published: "February 8, 2026"
+published: "August 8, 2026"
 readingTime: "12 min read"
 featured: true
 coverImage: "/projects/deepfake.png"
