@@ -32,6 +32,77 @@ export interface EngineeringCaseStudy {
 
 export const caseStudiesData: EngineeringCaseStudy[] = [
   {
+    slug: "from-prompts-to-graphs",
+    title: "From Prompts to Graphs: The Evolution of AI Application Engineering",
+    subtitle: "How AI engineering moved from controlling what a model says to controlling how an entire system behaves.",
+    category: "AI Systems Engineering",
+    readTime: "12 min read",
+    date: "2026",
+    heroImage: "/projects/deepfake.png",
+    whyItExists:
+      "As AI applications matured beyond single-prompt chatbots, developers faced new challenges: handling missing knowledge, taking real-world actions, retrying failed steps, coordinating multi-agent teams, and enforcing deterministic boundaries. This article traces the 5-stage evolutionary progression from Prompt Engineering (2022) to Graph Engineering (2026).",
+    systemArchitecture: {
+      overview:
+        "Modern agentic AI architectures organize system execution around cyclical state graphs (such as LangGraph). The system maintains explicit state across nodes (planners, tools, agents, evaluators) and uses conditional edge routing and human-in-the-loop checkpoints to orchestrate multi-agent workflows.",
+      diagramDescription:
+        "User Request -> Planner Node -> [Research Agent + Search Agent + Expert Agent] -> Evaluator Node -> (Pass: Synthesizer / Fail: Re-plan Retry)",
+      diagramMermaid: `graph TD
+    User["User Request"] --> Planner["Planner Node"]
+    Planner --> Research["Research Agent"]
+    Planner --> Search["Search Agent"]
+    Planner --> Expert["Expert Agent"]
+    Research --> Evaluator["Evaluator Node"]
+    Search --> Evaluator
+    Expert --> Evaluator
+    Evaluator -->|Fail / Re-plan| Retry["Retry Path"]
+    Retry --> Planner
+    Evaluator -->|Pass| Synthesizer["Synthesizer Node"]
+    Synthesizer --> FinalUser["Final Answer"]
+
+    style User fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Planner fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Research fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Search fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Expert fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Evaluator fill:#451a03,stroke:#f59e0b,color:#f8fafc
+    style Retry fill:#451a03,stroke:#ef4444,color:#f8fafc
+    style Synthesizer fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style FinalUser fill:#064e3b,stroke:#10b981,color:#f8fafc`,
+      keyComponents: [
+        "Graph Orchestrator (LangGraph State & Edges)",
+        "Planner Node (Constraint Decomposition)",
+        "Specialized Worker Agents (Tools & Domain Roles)",
+        "Evaluator Node (Quality Control & Retry Guardrails)",
+        "Model Context Protocol (MCP Interface)",
+      ],
+    },
+    designDecisions: [
+      {
+        decision: "Architectural Abstraction Pattern",
+        context:
+          "Choosing how to orchestrate complex multi-step AI tasks with tools, external memory, retries, and human sign-off.",
+        chosenOption: "Graph Engineering (Stateful nodes, conditional edges, explicit routing, and human-in-the-loop)",
+        rejectedOption: "Autonomous Single-Agent Loop (Unbounded ReAct iteration without state constraints)",
+        tradeOffRationale:
+          "Single-agent loops frequently get stuck in deadlocks or hallucinated tool cycles. Graph engineering earns its complexity by providing explicit state, bounded agent roles, deterministic fallback paths, and predictable control boundaries.",
+      },
+    ],
+    scalingAndBottlenecks: [
+      {
+        bottleneck: "Token overhead and latency multiplication in multi-agent graph loops",
+        impact: "Each added node and retry pass increases token cost and time-to-first-token.",
+        solution: "Used Model Context Protocol (MCP) for standardized tool interfaces and strict conditional routing gates to terminate loops early.",
+        metricImprovement: "Reduced unnecessary agent tool cycles by 40% while preserving high execution accuracy.",
+      },
+    ],
+    engineeringLearnings: [
+      "AI application layers accumulate rather than replace: Graphs contain Loops, which contain Agents, Context/RAG, and Prompts.",
+      "The goal of AI engineering moved from writing the perfect prompt to designing the right system boundaries around the model.",
+      "Use the simplest architecture that solves the problem—a prompt beats an agent when a prompt is enough.",
+    ],
+    projectLink: "/blog/from-prompts-to-graphs",
+  },
+  {
     slug: "chatgpt-long-conversations",
     title: "How Systems Like ChatGPT Manage Long Conversations Efficiently",
     subtitle: "An engineering analysis of how modern LLM applications manage long-running conversations using context windows, retrieval, summarization, and inference optimizations without exhausting GPU infrastructure.",

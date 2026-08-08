@@ -5,7 +5,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Script from "next/script";
 import Mermaid from "../../components/Mermaid";
+import MermaidAutoInit from "../../components/MermaidAutoInit";
 import { caseStudiesData, getCaseStudyBySlug } from "../../data/caseStudiesData";
+import { getPostBySlug } from "../../../lib/markdown";
 
 interface CaseStudyPageProps {
   params: Promise<{ slug: string }>;
@@ -81,6 +83,57 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
       "@id": `https://parampandya.dev/case-studies/${study.slug}`
     }
   };
+
+  // Render Markdown-backed post if available (e.g. from-prompts-to-graphs)
+  const markdownPost = getPostBySlug(study.slug);
+  if (markdownPost) {
+    return (
+      <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
+        <Header />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(studySchema) }}
+        />
+        <MermaidAutoInit />
+
+        <div className="pt-32 pb-24 px-4 sm:px-6">
+          <div className="mx-auto max-w-[800px] animate-fade-in space-y-10">
+            <div>
+              <Link
+                href="/case-studies"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 hover:underline mb-6"
+              >
+                ← Back to Blogs
+              </Link>
+
+              <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-slate-400 mb-4 select-none">
+                <span className="font-semibold">{markdownPost.category}</span>
+                <span>•</span>
+                <span className="font-semibold">{markdownPost.readingTime}</span>
+                <span>•</span>
+                <span className="font-semibold">{markdownPost.publishedDate}</span>
+              </div>
+
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+                {markdownPost.title}
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 leading-relaxed italic">
+                {markdownPost.excerpt}
+              </p>
+            </div>
+
+            <article
+              className="prose dark:prose-invert max-w-none space-y-6 text-[18px] leading-[1.7]"
+              dangerouslySetInnerHTML={{ __html: markdownPost.content }}
+            />
+          </div>
+        </div>
+
+        <Footer />
+      </main>
+    );
+  }
 
   // Render ChatGPT Case Study in clean documentation layout
   if (study.slug === "chatgpt-long-conversations") {
