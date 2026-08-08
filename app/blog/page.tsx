@@ -3,21 +3,21 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { caseStudiesData } from "../data/caseStudiesData";
-import { Cpu, ArrowRight, Layers, Sparkles, CheckCircle2 } from "lucide-react";
+import { Cpu, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Engineering Case Studies | Param Pandya",
+  title: "Engineering Blog | Param Pandya",
   description:
     "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
   alternates: {
-    canonical: "/case-studies",
+    canonical: "/blog",
   },
   openGraph: {
-    title: "Engineering Case Studies | Param Pandya",
+    title: "Engineering Blog | Param Pandya",
     description:
       "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
     type: "website",
-    url: "https://parampandya.dev/case-studies",
+    url: "https://parampandya.dev/blog",
     siteName: "Param Pandya | AI Research & Engineering",
     locale: "en_US",
     images: [
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
         url: "/assets/me-about.jpg",
         width: 1200,
         height: 1200,
-        alt: "Param Pandya Case Studies",
+        alt: "Param Pandya Blog",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Engineering Case Studies | Param Pandya",
+    title: "Engineering Blog | Param Pandya",
     description:
       "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
     creator: "@parampandya",
@@ -39,20 +39,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CaseStudiesPage(): React.JSX.Element {
-  const caseStudiesPageSchema = {
+export default function BlogPage(): React.JSX.Element {
+  const blogPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Engineering Case Studies | Param Pandya",
+    "name": "Engineering Blog | Param Pandya",
     "description": "Deep-dive system design trade-offs, architecture decisions, bottleneck post-mortems, and scaling learnings in production AI.",
-    "url": "https://parampandya.dev/case-studies"
+    "url": "https://parampandya.dev/blog"
   };
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30 selection:text-indigo-200">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
       />
       <Header />
 
@@ -75,12 +75,12 @@ export default function CaseStudiesPage(): React.JSX.Element {
         </div>
       </section>
 
-      {/* Case Studies List */}
+      {/* Blog Articles List */}
       <section className="container mx-auto max-w-5xl px-4 sm:px-6 pb-24 space-y-8">
         {caseStudiesData.map((study) => (
           <Link
             key={study.slug}
-            href={`/case-studies/${study.slug}`}
+            href={`/blog/${study.slug}`}
             className="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 border border-white/15 space-y-6 bg-slate-950/90 shadow-2xl relative overflow-hidden group cursor-pointer block"
           >
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">

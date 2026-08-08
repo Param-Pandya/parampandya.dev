@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/case-studies`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -90,7 +90,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic system case study routes
   const caseStudyRoutes: MetadataRoute.Sitemap = caseStudiesData.map((cs) => ({
-    url: `${baseUrl}/case-studies/${cs.slug}`,
+    url: `${baseUrl}/blog/${cs.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.85,
