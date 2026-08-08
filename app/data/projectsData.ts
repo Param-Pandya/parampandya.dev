@@ -169,7 +169,20 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Agentic Resume Parsing & Assessment Pipeline",
       description: "Resumes are parsed using custom extractors, then sent to a Gemini assessment chain that generates structured ATS feedback and matching roadmaps. Mock interviews run on a stateful chat session.",
       components: ["Resume PDF Parser", "Gemini ATS Evaluator", "Roadmap Generation Service", "Interactive Mock Interview Engine"],
-      diagramSnippet: "Resume PDF -> PDF Extractor -> Gemini ATS Chain -> JSON Feedback -> Roadmap Generator -> Frontend UI"
+      diagramSnippet: "Resume PDF -> PDF Extractor -> Gemini ATS Chain -> JSON Feedback -> Roadmap Generator -> Frontend UI",
+      diagramMermaid: `graph TD
+    Resume["Resume PDF"] --> Extractor["PDF Extractor"]
+    Extractor --> Gemini["Gemini ATS Chain"]
+    Gemini --> Feedback["JSON Feedback Engine"]
+    Feedback --> Roadmap["Roadmap Generator"]
+    Roadmap --> UI["Frontend React UI"]
+
+    style Resume fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Extractor fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Gemini fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Feedback fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Roadmap fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style UI fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`
     },
     implementation: "Built the frontend using React and TypeScript. The backend runs on FastAPI with Pydantic schemas, interacting with Gemini AI APIs using LangChain for structural output validation.",
     techStack: [
@@ -224,7 +237,20 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Geospatial Route & Itinerary Planner",
       description: "React Native mobile client sends user trip preferences to a FastAPI backend. A Gemini-based planner queries open APIs for destination verification, compiling a structured multi-day itinerary.",
       components: ["Expo Mobile UI", "FastAPI Itinerary Orchestrator", "Gemini Constraint Solver", "Geocoding & Map Integration"],
-      diagramSnippet: "User Inputs -> FastAPI -> Gemini API -> Constraint Checker -> Geocoded Map Points -> Expo App"
+      diagramSnippet: "User Inputs -> FastAPI -> Gemini API -> Constraint Checker -> Geocoded Map Points -> Expo App",
+      diagramMermaid: `graph TD
+    User["User Inputs"] --> FastAPI["FastAPI Backend"]
+    FastAPI --> Gemini["Gemini AI Model"]
+    Gemini --> Checker["Constraint Checker"]
+    Checker --> Maps["Geocoded Map Points"]
+    Maps --> App["Expo Mobile App"]
+
+    style User fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style FastAPI fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Gemini fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Checker fill:#0f172a,stroke:#f59e0b,color:#f8fafc
+    style Maps fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style App fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`
     },
     implementation: "Implemented the mobile interface using React Native and Expo. The backend incorporates asynchronous tasks to parallelize destination fetching and weather checks before compiling final recommendations.",
     techStack: [
@@ -279,7 +305,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Caloric & Macro-nutrient Solver Architecture",
       description: "The app collects health profile parameters on-device and leverages Gemini APIs to draft dynamic, balanced meal lists that strictly adhere to nutritional requirements.",
       components: ["React Native Health Dashboard", "Calorie Requirement Solver", "Gemini Recipe Generator", "Macro Tracker Database"],
-      diagramSnippet: "User Metrics -> Basal Metabolic Rate Solver -> Gemini Macro Builder -> Recipe Database -> Mobile App"
+      diagramSnippet: "User Metrics -> Basal Metabolic Rate Solver -> Gemini Macro Builder -> Recipe Database -> Mobile App",
+      diagramMermaid: `graph TD
+    Metrics["User Health Metrics"] --> BMR["Basal Metabolic Rate Solver"]
+    BMR --> Macro["Gemini Macro Builder"]
+    Macro --> Recipe["Recipe Database"]
+    Recipe --> Mobile["Mobile App"]
+
+    style Metrics fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style BMR fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Macro fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Recipe fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style Mobile fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`
     },
     implementation: "Created using Expo for rapid cross-platform deployment. Leverages client-side storage for tracking daily macro consumption and remote LLM queries to fetch tailored recipes.",
     techStack: [
@@ -334,7 +371,20 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Collaborative Agent Crew with Shared Memory",
       description: "Multiple specialized agents execute in sequence or parallel using a hierarchical memory controller. Information is updated in a vector-based episodic memory store.",
       components: ["Lead Qualification Agent", "Content Copywriter Agent", "Campaign Optimizer Agent", "Hierarchical Memory Orchestrator"],
-      diagramSnippet: "Inbound Lead -> Lead Agent -> [Scoring & Memory] -> Writer Agent -> Optimized Email Draft -> CRM Link"
+      diagramSnippet: "Inbound Lead -> Lead Agent -> [Scoring & Memory] -> Writer Agent -> Optimized Email Draft -> CRM Link",
+      diagramMermaid: `graph TD
+    Inbound["Inbound Lead"] --> LeadAgent["Lead Agent"]
+    LeadAgent --> Memory["Scoring & Memory Vector Store"]
+    Memory --> WriterAgent["Writer Agent"]
+    WriterAgent --> Draft["Optimized Email Draft"]
+    Draft --> CRM["CRM Link / Dispatch"]
+
+    style Inbound fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style LeadAgent fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Memory fill:#0f172a,stroke:#f59e0b,color:#f8fafc
+    style WriterAgent fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Draft fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style CRM fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`
     },
     implementation: "Developed in Python using LangGraph and CrewAI concepts. Custom memory loops store interaction history, allowing agents to references past touchpoints.",
     techStack: [
@@ -390,7 +440,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Lightweight Dual-Stream Segmentation Architecture",
       description: "A specialized CNN architecture leverages depthwise separable convolutions to independently predict binary masks for face and hand regions, maximizing throughput.",
       components: ["Video Capture Pipeline", "MobileNetV3 Encoder", "U-Net Decoder with Skip Connections", "Post-processing Bilateral Filter"],
-      diagramSnippet: "Image Frame -> MobileNetV3 -> Skip Connection Decoder -> Sigmoid Boundary Mask -> Face/Hand Regions"
+      diagramSnippet: "Image Frame -> MobileNetV3 -> Skip Connection Decoder -> Sigmoid Boundary Mask -> Face/Hand Regions",
+      diagramMermaid: `graph TD
+    Frame["Image Frame"] --> MobileNet["MobileNetV3 Encoder"]
+    MobileNet --> Decoder["Skip Connection Decoder"]
+    Decoder --> Mask["Sigmoid Boundary Mask"]
+    Mask --> Output["Face / Hand Region Segmentation"]
+
+    style Frame fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style MobileNet fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Decoder fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Mask fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Output fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Built in Python using PyTorch and OpenCV. Pretrained weights were fine-tuned on custom datasets using dice-loss optimization, then exported to ONNX format for deployment.",
     techStack: [
@@ -446,7 +507,21 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Spatial-Frequency Fusion Pipeline",
       description: "Faces are extracted and processed through a dual-branch network: a spatial XceptionNet stream and an InceptionResNetV2 stream. Features are fused using cross-attention layers.",
       components: ["MTCNN Face Alignment", "Xception Spatial Encoder", "InceptionResNet Spectral Branch", "Attention Fusion Classification"],
-      diagramSnippet: "Compressed Video -> MTCNN Face Extract -> Dual Branch CNN -> Attention Merger -> Real vs Fake Class"
+      diagramSnippet: "Compressed Video -> MTCNN Face Extract -> Dual Branch CNN -> Attention Merger -> Real vs Fake Class",
+      diagramMermaid: `graph TD
+    Video["Compressed Video Frame"] --> MTCNN["MTCNN Face Alignment"]
+    MTCNN --> Spatial["Xception Spatial Branch"]
+    MTCNN --> Spectral["InceptionResNet Spectral Branch"]
+    Spatial --> Attention["Cross-Attention Merger"]
+    Spectral --> Attention
+    Attention --> Classify["Real vs Fake Classification"]
+
+    style Video fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style MTCNN fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Spatial fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Spectral fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Attention fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Classify fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Implemented in TensorFlow and trained on the FaceForensics++ corpus. We added custom data augmentations simulating compression at various CRF rates to ensure robustness.",
     techStack: [
@@ -501,7 +576,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "NLP Dataset Benchmarking Pipeline",
       description: "Data was scraped and annotated by native speakers. Standardized pre-processing scripts clean Gujarati script, feeding into fine-tuned Indic transformer models.",
       components: ["Scraping & Cleaning Scripts", "Human Annotation Guidelines", "IndicBERT/MuRIL Fine-tuning Hub", "Evaluation Suite"],
-      diagramSnippet: "Raw Gujarati Text -> Data Preprocessor -> MuRIL/IndicBERT Encoder -> Sentiment Classifier -> F1 Metrics"
+      diagramSnippet: "Raw Gujarati Text -> Data Preprocessor -> MuRIL/IndicBERT Encoder -> Sentiment Classifier -> F1 Metrics",
+      diagramMermaid: `graph TD
+    RawText["Raw Gujarati Text"] --> Preprocessor["Data Preprocessor"]
+    Preprocessor --> Encoder["MuRIL / IndicBERT Encoder"]
+    Encoder --> Classifier["Sentiment Classifier"]
+    Classifier --> Metrics["F1 Evaluation & Benchmarks"]
+
+    style RawText fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Preprocessor fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Encoder fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Classifier fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Metrics fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Built annotation pipelines using Python and custom tooling. Fine-tuned multilingual BERT variants (mBERT, XLM-RoBERTa, MuRIL) using PyTorch and Hugging Face.",
     techStack: [
@@ -556,7 +642,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Geospatial & Text Mining Pipeline",
       description: "Data is parsed from SQL tables, cleaned, and processed through a sentiment analyzer. Results are mapped using density algorithms and spatial charts.",
       components: ["SQL Ingestion Hub", "VADER Sentiment Engine", "Folium Heatmap Generator", "Market Density Estimator"],
-      diagramSnippet: "Zomato CSV -> SQL Database -> VADER Sentiment NLP -> Folium Mapping -> Launch Recommendations"
+      diagramSnippet: "Zomato CSV -> SQL Database -> VADER Sentiment NLP -> Folium Mapping -> Launch Recommendations",
+      diagramMermaid: `graph TD
+    CSV["Zomato Review CSV"] --> SQL["SQL Database"]
+    SQL --> VADER["VADER Sentiment NLP"]
+    VADER --> Folium["Folium Geospatial Mapping"]
+    Folium --> Recs["Launch Recommendations"]
+
+    style CSV fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style SQL fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style VADER fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Folium fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Recs fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Implemented in Python using pandas, PostgreSQL, NLTK, and folium. Interactive map dashboards visualize sentiment hot spots and cuisine clusters.",
     techStack: [
@@ -611,7 +708,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Imbalanced Classification Pipeline",
       description: "Data undergoes scaling and SMOTE resampling before training. Ensemble models (Random Forest, XGBoost) classify transactions, validated by recall metrics.",
       components: ["Data Scaling Engine", "SMOTE Resampler", "XGBoost Classifier Core", "Precision-Recall Evaluator"],
-      diagramSnippet: "Imbalanced Data -> SMOTE Resampling -> XGBoost Classifier -> Precision-Recall Tuning -> Action Trigger"
+      diagramSnippet: "Imbalanced Data -> SMOTE Resampling -> XGBoost Classifier -> Precision-Recall Tuning -> Action Trigger",
+      diagramMermaid: `graph TD
+    Data["Imbalanced Transactions Data"] --> SMOTE["SMOTE Resampling"]
+    SMOTE --> XGBoost["XGBoost Classifier"]
+    XGBoost --> Tuning["Precision-Recall Tuning"]
+    Tuning --> Action["Fraud Risk Action Trigger"]
+
+    style Data fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style SMOTE fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style XGBoost fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Tuning fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Action fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Written in Python using scikit-learn, XGBoost, and pandas. The pipeline evaluates models using strict Precision-Recall AUC rather than standard accuracy.",
     techStack: [
@@ -666,7 +774,18 @@ export const projectsData: ProjectCaseStudy[] = [
       title: "Historical Backtesting Engine",
       description: "Data is loaded, technical indicators (MACD, RSI) are computed, and a state engine executes buy/sell signals. Metrics like drawdown and Sharpe ratio are calculated.",
       components: ["Indicator Calculator", "Signal State Engine", "Portfolio Backtester", "Risk Metric Reporter"],
-      diagramSnippet: "Market Data -> Indicator Calculator -> Signal Engine -> Portfolio Execution Simulator -> Performance Report"
+      diagramSnippet: "Market Data -> Indicator Calculator -> Signal Engine -> Portfolio Execution Simulator -> Performance Report",
+      diagramMermaid: `graph TD
+    MarketData["Market OHLCV Data"] --> Calculator["Technical Indicator Calculator"]
+    Calculator --> Engine["Signal State Engine"]
+    Engine --> Simulator["Portfolio Execution Simulator"]
+    Simulator --> Report["Performance & Risk Report"]
+
+    style MarketData fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Calculator fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Engine fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Simulator fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Report fill:#064e3b,stroke:#10b981,color:#f8fafc`
     },
     implementation: "Implemented in Python using pandas, numpy, and backtrader. Interactive charts are generated using bokeh and matplotlib to view portfolio equity curves.",
     techStack: [

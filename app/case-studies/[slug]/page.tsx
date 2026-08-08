@@ -549,9 +549,15 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
                 {study.systemArchitecture.overview}
               </p>
 
-              <pre className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-white/5 overflow-x-auto font-mono text-sm leading-relaxed my-6 text-slate-850 dark:text-slate-200">
-                <code>{study.systemArchitecture.diagramDescription}</code>
-              </pre>
+              {study.systemArchitecture.diagramMermaid ? (
+                <div className="my-6">
+                  <Mermaid chart={study.systemArchitecture.diagramMermaid} />
+                </div>
+              ) : (
+                <pre className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-white/5 overflow-x-auto font-mono text-sm leading-relaxed my-6 text-slate-850 dark:text-slate-200">
+                  <code>{study.systemArchitecture.diagramDescription}</code>
+                </pre>
+              )}
 
               <div className="space-y-2">
                 <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold">

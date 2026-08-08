@@ -31,26 +31,18 @@ Graceful degradation is one piece of this: if a large primary model times out, t
 
 Scaling traditional software is mostly about CPU and memory. Scaling an AI system adds latency SLAs, token budgets, and GPU memory limits into the mix.
 
-```
-               +-----------------------------------+
-               |          Incoming Request         |
-               +-----------------+-----------------+
-                                 |
-                     +-----------v-----------+
-                     |    Semantic Cache     |
-                     +---+---------------+---+
-                         |               |
-               Cache Hit |               | Cache Miss
-                         v               v
-               +---------+-----+   +-----+-----------------+
-               | Return Instant|   | Request Batching      |
-               | Cached Result |   | & Load Balancing      |
-               +---------------+   +-----------+-----------+
-                                               |
-                                   +-----------v-----------+
-                                   |  Containerized Model  |
-                                   |   Serving Endpoint    |
-                                   +-----------------------+
+```mermaid
+graph TD
+    Req["Incoming Request"] --> Cache["Semantic Cache"]
+    Cache -->|Cache Hit| Return["Return Instant Cached Result"]
+    Cache -->|Cache Miss| Batch["Request Batching & Load Balancing"]
+    Batch --> Endpoint["Containerized Model Serving Endpoint"]
+
+    style Req fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Cache fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Return fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style Batch fill:#0f172a,stroke:#f59e0b,color:#f8fafc
+    style Endpoint fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
 ```
 
 At enterprise scale, semantic caching stores prompt-response pairs as vectors, so a question that's semantically identical to one asked minutes earlier can be served straight from cache rather than run through the model again. Dynamic request batching groups multiple inference calls into a single execution batch to keep GPU utilization high. And quantization — shrinking a model from 16-bit floats down to 8-bit or 4-bit precision, using techniques like AWQ or GGUF — cuts memory footprint substantially without much loss in accuracy.

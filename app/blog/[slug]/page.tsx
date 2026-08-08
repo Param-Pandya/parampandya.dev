@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import MermaidAutoInit from "../../components/MermaidAutoInit";
 import { getBlogPosts, getPostBySlug, extractToc } from "../../../lib/markdown";
 import { ArrowLeft, Clock } from "lucide-react";
 
@@ -101,6 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <MermaidAutoInit />
 
       <div className="pt-32 pb-24 px-4 sm:px-6">
         <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-10">

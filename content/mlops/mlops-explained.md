@@ -23,33 +23,19 @@ Running an automated bakery involves two distinct concerns. Traditional DevOps i
 
 An MLOps setup at scale generally runs as five systems feeding into each other in a loop.
 
-```
-               +-----------------------------------+
-               |        1. Feature Store           |
-               | (Versioned Data Preparation)      |
-               +-----------------+-----------------+
-                                 |
-                      +-----------v-----------+
-                      |  2. Continuous        |
-                      |     Training (CT)     |
-                      +-----------+-----------+
-                                 |
-                      +-----------v-----------+
-                      |  3. Model Registry    |
-                      | (Artifact Versioning) |
-                      +-----------+-----------+
-                                 |
-                      +-----------v-----------+
-                      |  4. Model Deployment  |
-                      |  (Canary/Shadow Ops)  |
-                      +-----------+-----------+
-                                 |
-                      +-----------v-----------+
-                      |  5. Drift & Health    |
-                      |     Monitoring        |
-                      +-----------+-----------+
-                                 | (Triggers Auto-Retrain)
-                                 +-----------------------+
+```mermaid
+graph TD
+    FeatureStore["1. Feature Store<br/>(Versioned Data Preparation)"] --> CT["2. Continuous Training (CT)"]
+    CT --> Registry["3. Model Registry<br/>(Artifact Versioning)"]
+    Registry --> Deployment["4. Model Deployment<br/>(Canary/Shadow Ops)"]
+    Deployment --> Monitoring["5. Drift & Health Monitoring"]
+    Monitoring -->|Triggers Auto-Retrain| CT
+
+    style FeatureStore fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style CT fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Registry fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Deployment fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Monitoring fill:#064e3b,stroke:#10b981,color:#f8fafc
 ```
 
 **Feature store.** A centralized place where raw data gets turned into pre-computed features, ensuring the same features used at training time are also what the live prediction path sees — otherwise training and production quietly drift apart. Feast, Hopsworks, and SageMaker Feature Store are common choices here.

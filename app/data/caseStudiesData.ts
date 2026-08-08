@@ -10,6 +10,7 @@ export interface EngineeringCaseStudy {
   systemArchitecture: {
     overview: string;
     diagramDescription: string;
+    diagramMermaid?: string;
     keyComponents: string[];
   };
   designDecisions: Array<{
@@ -45,6 +46,27 @@ export const caseStudiesData: EngineeringCaseStudy[] = [
         "Modern conversational LLM systems utilize a multi-tier memory architecture to simulate stateless persistence. Dynamic context windows are maintained using sliding attention windows, while long-term memory is fetched via vector retrieval and summarized by background worker loops.",
       diagramDescription:
         "User Query -> Context Window Planner -> [KV Cache Lookup + Vector Retrieval + Summary Store] -> Consolidated Prompt -> LLM Inference Engine -> Response + Async Memory Update",
+      diagramMermaid: `graph TD
+    UserQuery["User Query"] --> Planner["Context Window Planner"]
+    Planner --> Cache["KV Cache Lookup"]
+    Planner --> Vector["Vector Retrieval"]
+    Planner --> Summary["Summary Store"]
+    Cache --> Prompt["Consolidated Prompt"]
+    Vector --> Prompt
+    Summary --> Prompt
+    Prompt --> Engine["LLM Inference Engine"]
+    Engine --> Response["Response Generation"]
+    Response --> AsyncUpdate["Async Memory Update"]
+
+    style UserQuery fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Planner fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Cache fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Vector fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Summary fill:#0f172a,stroke:#38bdf8,color:#f8fafc
+    style Prompt fill:#0f172a,stroke:#a855f7,color:#f8fafc
+    style Engine fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Response fill:#064e3b,stroke:#10b981,color:#f8fafc
+    style AsyncUpdate fill:#1e1b4b,stroke:#6366f1,color:#f8fafc`,
       keyComponents: [
         "Sliding Context Window Manager",
         "Semantic Retrieval (Vector DB)",

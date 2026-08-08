@@ -19,19 +19,16 @@ A standard chatbot answers one question at a time. Ask it to "book me a flight t
 
 The LLM functions as the agent's reasoning engine, but turning that into something that can actually get work done requires three additional capabilities layered on top.
 
-```
-               +-----------------------+
-               |     LLM Brain         |
-               | (Reasoning & Choice)  |
-               +-----------+-----------+
-                           |
-        +------------------+------------------+
-        |                  |                  |
-+-------v-------+  +-------v-------+  +-------v-------+
-|   Planning    |  |    Memory     |  |     Tools     |
-| (Sub-goals,   |  | (Short-term,  |  | (APIs, Web,   |
-| Self-reflection)| | Long-term DB) |  | Code Execution)|
-+---------------+  +---------------+  +---------------+
+```mermaid
+graph TD
+    LLM["LLM Brain<br/>(Reasoning & Choice)"] --> Planning["Planning<br/>(Sub-goals, Self-reflection)"]
+    LLM --> Memory["Memory<br/>(Short-term, Long-term DB)"]
+    LLM --> Tools["Tools<br/>(APIs, Web, Code Execution)"]
+    
+    style LLM fill:#1e1b4b,stroke:#6366f1,color:#f8fafc
+    style Planning fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Memory fill:#0f172a,stroke:#3b82f6,color:#f8fafc
+    style Tools fill:#0f172a,stroke:#3b82f6,color:#f8fafc
 ```
 
 **Planning.** Given a large objective, the agent uses chain-of-thought reasoning to break it into smaller sub-tasks — booking a flight, for instance, decomposes into searching airlines, comparing prices, checking the budget, and then calling a booking API. When something goes wrong along the way, such as a failed API call or a bad result, the agent can pause, assess what happened, and try a different approach instead of simply stopping.
