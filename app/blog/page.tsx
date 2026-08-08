@@ -6,13 +6,13 @@ import { getBlogPosts } from "../../lib/markdown";
 import { BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Technical Blog | Param Pandya",
+  title: "Technical Notes | Param Pandya",
   description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Technical Blog | Param Pandya",
+    title: "Technical Notes | Param Pandya",
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     type: "website",
     url: "https://parampandya.dev/blog",
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
         url: "/assets/me-about.jpg",
         width: 1200,
         height: 1200,
-        alt: "Param Pandya Technical Blog",
+        alt: "Param Pandya Technical Notes",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Blog | Param Pandya",
+    title: "Technical Notes | Param Pandya",
     description: "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     creator: "@parampandya",
     images: ["/assets/me-about.jpg"],
@@ -43,7 +43,7 @@ export default async function BlogPage() {
   const blogPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Technical Blog | Param Pandya",
+    "name": "Technical Notes | Param Pandya",
     "description": "Technical post-mortems, stateful LLM agent architectures, RAG optimization benchmarks, and PyTorch deep learning notes.",
     "url": "https://parampandya.dev/blog"
   };
@@ -66,7 +66,7 @@ export default async function BlogPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-            Learning Notes
+            Notes
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-lg max-w-2xl leading-relaxed font-normal mb-6">

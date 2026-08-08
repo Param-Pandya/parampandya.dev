@@ -116,7 +116,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 href="/blog"
                 className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-indigo-650 dark:text-indigo-400 hover:underline mb-6"
               >
-                <ArrowLeft className="w-3.5 h-3.5" /> Back to Learning Notes
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to Notes
               </Link>
 
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-slate-400 mb-4 select-none">
@@ -159,7 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 href="/blog"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-350 transition-all border border-slate-200 dark:border-white/5"
               >
-                <span>Explore More Learning Notes</span>
+                <span>Explore More Notes</span>
               </Link>
             </div>
 

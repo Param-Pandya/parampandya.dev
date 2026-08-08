@@ -71,7 +71,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps): React.JS
                 : "text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-900/60 border border-slate-250 dark:border-white/10 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
             }`}
           >
-            All Learning Notes
+            All Notes
           </button>
 
           {/* Row 2: Specific Categories in a single scrolling/fitting horizontal row */}

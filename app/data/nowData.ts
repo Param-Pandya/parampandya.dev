@@ -46,8 +46,8 @@ export const nowData: NowPageData = {
       link: "/projects/gmsac",
     },
     {
-      title: "AI Portfolio & Learning Notes",
-      description: "Building a documentation-style portfolio featuring AI engineering blogs, learning notes, and project documentation focused on LLMs, RAG, AI Agents, Computer Vision, and MLOps.",
+      title: "AI Portfolio & Notes",
+      description: "Building a documentation-style portfolio featuring AI engineering blog articles, technical notes, and project documentation focused on LLMs, RAG, AI Agents, Computer Vision, and MLOps.",
       tech: ["React", "TypeScript", "Markdown", "Tailwind CSS"],
     },
   ],

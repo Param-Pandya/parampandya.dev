@@ -62,9 +62,9 @@ export default function Header(): React.JSX.Element {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Projects", href: "/projects" },
-    { label: "Blogs", href: "/case-studies" },
+    { label: "Blog", href: "/case-studies" },
     { label: "Research", href: "/research" },
-    { label: "Learning Notes", href: "/blog" },
+    { label: "Notes", href: "/blog" },
     { label: "Open Source", href: "/open-source" },
     { label: "Now", href: "/now" },
   ];
