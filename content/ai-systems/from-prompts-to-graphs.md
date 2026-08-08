@@ -11,10 +11,6 @@ coverImage: "/projects/deepfake.png"
 slug: "from-prompts-to-graphs"
 ---
 
-# From Prompts to Graphs: The Evolution of AI Application Engineering
-
-## How AI engineering moved from controlling what a model says to controlling how an entire system behaves
-
 The way applications are built on top of large language models has changed substantially over the past several years. In the earliest phase of this work, the central question was narrow: how does one phrase a request so that the model responds usefully? As applications matured, new problems surfaced in sequence. What happens when the model lacks the information it needs to answer? What happens when the task requires an action in the world rather than a block of text? And what happens when a task cannot be resolved in a single pass at all, but instead requires retries, decisions, specialized subsystems, human sign-off, persistent memory, and coordination across external tools?
 
 Each of these problems forced the underlying engineering abstraction to expand. One way to organize that expansion is as a rough five-stage progression:

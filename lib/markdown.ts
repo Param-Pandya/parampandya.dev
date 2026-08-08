@@ -49,7 +49,10 @@ export function parseFrontmatter(fileContent: string): { data: Partial<Frontmatt
   }
   
   const yamlContent = match[1];
-  const content = fileContent.replace(frontmatterRegex, "").trim();
+  let content = fileContent.replace(frontmatterRegex, "").trim();
+  
+  // Strip duplicate leading H1 header if present (as title is rendered by detail page header)
+  content = content.replace(/^#\s+[^\n]+\r?\n*/, "").trim();
   
   const data: Record<string, any> = {};
   yamlContent.split("\n").forEach((line) => {
