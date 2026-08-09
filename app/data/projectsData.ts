@@ -49,8 +49,8 @@ export interface ProjectCaseStudy {
 
 export const projectsData: ProjectCaseStudy[] = [
   {
-    id: "wayvify",
-    title: "WayVify",
+    id: "jauntai",
+    title: "JauntAI",
     ribbon: "AI Agents",
     ribbonColor: "bg-cyan-500 text-white shadow-cyan-500/50",
     category: "🧠 AI Agents",
@@ -58,10 +58,10 @@ export const projectsData: ProjectCaseStudy[] = [
     problemSolved: "Traditional travel planning relies on manual multi-tab research or single-prompt chatbots that struggle with complex constraint decomposition, real-time external tool integration, multi-currency budget calculation, and stateful human feedback loops.",
     thumbnail: "/projects/deepfake.png",
     technologies: ["LangGraph", "MCP", "Multi-Agent AI", "HITL", "FastAPI", "Groq", "Llama 3.3 70B", "Python"],
-    githubUrl: "https://github.com/Param-Pandya/wayvify",
-    liveDemoUrl: "https://wayvify.parampandya.dev/",
-    overview: "WayVify is an AI-powered multi-agent travel planning system built with LangGraph, MCP, FastAPI, and LLM-based agent orchestration. It transforms natural-language travel requests into personalized, budget-aware, and weather-informed travel plans. Unlike a conventional single-prompt travel chatbot, WayVify uses a Supervisor Agent to understand travel requirements, extract constraints, and dynamically route tasks to specialized agents for flight discovery, hotel research, weather analysis, budget planning, and itinerary synthesis. The system integrates the Model Context Protocol (MCP) to connect agents with external tools and services, including aviation data, web search, and weather information. After generating a draft itinerary, the workflow pauses using LangGraph's Human-in-the-Loop mechanism, allowing the user to approve the plan or provide feedback before the final itinerary is generated. WayVify also supports multi-currency budget analysis, itinerary export, PDF generation, and a dedicated technical documentation interface.",
-    problem: "From chatbot-style prompting to agent orchestration. WayVify is designed around task decomposition and specialized agents rather than a single LLM call. A central Supervisor Agent determines what information is required, routes work to domain-specific agents, aggregates their results, and pauses the workflow for human review before producing the final plan. This architecture allows different capabilities—flight research, accommodation discovery, weather analysis, budget evaluation, and itinerary generation—to operate as coordinated components within a single workflow.",
+    githubUrl: "https://github.com/Param-Pandya/JauntAI",
+    liveDemoUrl: "https://jauntai.parampandya.dev/",
+    overview: "JauntAI is an AI-powered multi-agent travel planning system built with LangGraph, MCP, FastAPI, and LLM-based agent orchestration. It transforms natural-language travel requests into personalized, budget-aware, and weather-informed travel plans. Unlike a conventional single-prompt travel chatbot, JauntAI uses a Supervisor Agent to understand travel requirements, extract constraints, and dynamically route tasks to specialized agents for flight discovery, hotel research, weather analysis, budget planning, and itinerary synthesis. The system integrates the Model Context Protocol (MCP) to connect agents with external tools and services, including aviation data, web search, and weather information. After generating a draft itinerary, the workflow pauses using LangGraph's Human-in-the-Loop mechanism, allowing the user to approve the plan or provide feedback before the final itinerary is generated. JauntAI also supports multi-currency budget analysis, itinerary export, PDF generation, and a dedicated technical documentation interface.",
+    problem: "From chatbot-style prompting to agent orchestration. JauntAI is designed around task decomposition and specialized agents rather than a single LLM call. A central Supervisor Agent determines what information is required, routes work to domain-specific agents, aggregates their results, and pauses the workflow for human review before producing the final plan. This architecture allows different capabilities—flight research, accommodation discovery, weather analysis, budget evaluation, and itinerary generation—to operate as coordinated components within a single workflow.",
     architecture: {
       title: "Supervisor-Worker Multi-Agent Architecture with MCP & HITL",
       description: "A central Supervisor Agent understands the user's travel request, extracts constraints (destination, duration, origin, budget), and dynamically routes tasks to specialized worker agents (Flight, Hotel, Weather, Budget). Outputs are aggregated into a structured draft itinerary before pausing via LangGraph's interrupt() mechanism for Human-in-the-Loop approval.",
